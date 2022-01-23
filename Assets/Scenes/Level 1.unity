@@ -154,7 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAACQn+v1WRtPWgIAABQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk3HUIhLb60hpIckTEgnF1+EtMYaZMmjjwDJ8N+7km3s0OmJ5e3b3bcf8gcRytbAnDYrI/iD5kB+jEiwyZdR77yHI91ptRHv0HFeBXdlINHIeaZOaMTHIczqCpwR7KfayUBOEPRKFNpUS76DTFtnES6otIAuo12IVgh9jMgRf27mIeSE1iQN1jta82R0RpOBcmB6akfsaA3LKyZpVQMPkntyOm7Zs3GkKWymZQQP01IK2yoh7lTHTjNaW499IIELip3F8oFfgtiVLqgcBj8VhQXXSjL0tBAGB9RkJb90M7WK2n2j641KHwUkk2kU1WR9+Idw02gujK7uu8LjJBRxpWD7Z3pi1LrBXIfw4rNyrw5U7ulWwmsJ6lGvjPaKo9MZH0K9hcmi/3vpLSuB7Xu8kXoF+vr/2wk9nGP7x0yKahtcX6cNsJE6DjzuHgyu5jcKjpdh2xSIBhV/LLzQ3fCEWsedMNahq+1SBXlb7U2gkmWcWejGu0wbBRFuRdegqHSnNaZx1zu88g3KXnnuaHgsbfHW172Bq5AI9/wkuXKt9eGyLFvqwwPY8sk7KRT0ooPjEeeUaaWaExvOpAvbeFNQNgjbecE/nxZhLIX023iaMj6dpLP0Zkxvt/N5wmfprPg+u6Uk3p5Q2CeV60ZoOx7cmuqTK7yz7hsyWhlax3Pnhh5W4r3SQ4FCFXrDDIB6alJclIPBKvgu+ZILnNAGnBMqLpx85ERqtgeeX2rmsdXl0Rma91lyUos37QKSkyx+NXIS4Msxrw28CTiE4l2yMzn/BVBLAwQUAAAICAAAkJ/rWVhqgG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UnKyeaq5saGJeXKKiZG5qbmuYaJZkqWlQYqpuWmahalZolIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAkJ/r9VkbT1oCAAAUBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAkJ/rWVhqgG0AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
+    dataString: UEsDBBQAAAgIAACYn+v1WRtPWgIAABQFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQF1VE1z2jAQ/SuMzk3HUIhLb60hpIckTEgnF1+EtMYaZMmjjwDJ8N+7km3s0OmJ5e3b3bcf8gcRytbAnDYrI/iD5kB+jEiwyZdR77yHI91ptRHv0HFeBXdlINHIeaZOaMTHIczqCpwR7KfayUBOEPRKFNpUS76DTFtnES6otIAuo12IVgh9jMgRf27mIeSE1iQN1jta82R0RpOBcmB6akfsaA3LKyZpVQMPkntyOm7Zs3GkKWymZQQP01IK2yoh7lTHTjNaW499IIELip3F8oFfgtiVLqgcBj8VhQXXSjL0tBAGB9RkJb90M7WK2n2j641KHwUkk2kU1WR9+Idw02gujK7uu8LjJBRxpWD7Z3pi1LrBXIfw4rNyrw5U7ulWwmsJ6lGvjPaKo9MZH0K9hcmi/3vpLSuB7Xu8kXoF+vr/2wk9nGP7x0yKahtcX6cNsJE6DjzuHgyu5jcKjpdh2xSIBhV/LLzQ3fCEWsedMNahq+1SBXlb7U2gkmWcWejGu0wbBRFuRdegqHSnNaZx1zu88g3KXnnuaHgsbfHW172Bq5AI9/wkuXKt9eGyLFvqwwPY8sk7KRT0ooPjEeeUaaWaExvOpAvbeFNQNgjbecE/nxZhLIX023iaMj6dpLP0Zkxvt/N5wmfprPg+u6Uk3p5Q2CeV60ZoOx7cmuqTK7yz7hsyWhlax3Pnhh5W4r3SQ4FCFXrDDIB6alJclIPBKvgu+ZILnNAGnBMqLpx85ERqtgeeX2rmsdXl0Rma91lyUos37QKSkyx+NXIS4Msxrw28CTiE4l2yMzn/BVBLAwQUAAAICAAAmJ/rWVhqgG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNdRUEovSizIKAaKGII4pZkpIHa0UnKyeaq5saGJeXKKiZG5qbmuYaJZkqWlQYqpuWmahalZolIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAmJ/r9VkbT1oCAAAUBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAmJ/rWVhqgG0AAAB4AAAACQAkAAAAAAAAAAAAAACnAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAF8DAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -531,7 +531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &448679204
 Transform:
   m_ObjectHideFlags: 0
@@ -761,6 +761,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillElementType: 0
+  health: 50
 --- !u!114 &616884642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1056,6 +1057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillElementType: 0
+  health: 50
 --- !u!114 &770600821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1202,7 +1204,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
+  m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1503,6 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillElementType: 0
+  health: 50
 --- !u!114 &1368788354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2144,6 +2147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillElementType: 0
+  health: 50
 --- !u!114 &1805716653
 MonoBehaviour:
   m_ObjectHideFlags: 0
