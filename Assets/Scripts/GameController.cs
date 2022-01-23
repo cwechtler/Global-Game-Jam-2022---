@@ -56,6 +56,7 @@ public class GameController : MonoBehaviour
 
 	public void StartGame()
 	{
+		AstarPath.active.Scan();
 		PlayerPrefsManager.DeletePlayerPrefsPlayerInfo();
 		collectedItems.Clear();
 	}
