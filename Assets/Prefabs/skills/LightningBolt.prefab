@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 3165523244772716442}
   m_Layer: 8
   m_Name: LightningBolt
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfb4d413de9f1d541915329635c9f2bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 10
   firingRate: 1
   fireOnce: 1
   skillElementType: 0

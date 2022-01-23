@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 8144148904180333095}
   m_Layer: 8
   m_Name: bullet
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,8 +166,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f1b38ff9a72e5742abed3d423842d88, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 5
   firingRate: 0.3
+  fireOnce: 0
   skillElementType: 2
 --- !u!1 &7945946040506289884
 GameObject:

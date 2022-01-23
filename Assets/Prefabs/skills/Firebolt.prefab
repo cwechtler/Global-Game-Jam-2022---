@@ -4973,7 +4973,7 @@ GameObject:
   - component: {fileID: 553769018}
   m_Layer: 8
   m_Name: Firebolt
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5289,8 +5289,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73c8494c53e599408f9ff1705f4eb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  damage: 50
   firingRate: 0.5
+  fireOnce: 0
   skillElementType: 0
   ProjectileParticleSystem: {fileID: 8976131070745858773}
   ProjectileExplosionParticleSystem: {fileID: 8976131070745890387}
