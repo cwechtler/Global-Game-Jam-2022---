@@ -27,6 +27,14 @@ public class GameController : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
+		StartCoroutine(LateStart(.1f));
+	}
+
+	IEnumerator LateStart(float waitTime)
+	{
+		yield return new WaitForSeconds(waitTime);
+
+		AstarPath.active.Scan();
 	}
 
 	private void FindSceneObjects() {

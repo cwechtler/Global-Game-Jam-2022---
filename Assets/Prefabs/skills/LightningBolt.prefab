@@ -481,7 +481,7 @@ MonoBehaviour:
   damage: 10
   firingRate: 1
   fireOnce: 1
-  skillElementType: 0
+  skillElementType: 2
   duration: 5
   StartObject: {fileID: 0}
   StartPosition: {x: 0, y: 0, z: 0}
