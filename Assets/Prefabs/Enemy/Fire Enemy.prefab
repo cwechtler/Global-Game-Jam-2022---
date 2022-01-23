@@ -231,8 +231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60985474a00ea94baf1c777874977aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillElementType: 0
-  health: 50
+  skillElementTypeToDestroy: 1
+  health: 1
 --- !u!50 &2056061740658976802
 Rigidbody2D:
   serializedVersion: 4

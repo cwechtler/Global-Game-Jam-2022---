@@ -1,19 +1,23 @@
+using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-	[SerializeField] private skillElementType skillElementType;
-	[SerializeField] private float health = 50f;
+	[SerializeField] private skillElementType skillElementTypeToDestroy;
+	[SerializeField] private float health = 1f;
 
-	// Start is called before the first frame update
+	private AIDestinationSetter destinationSetter;
+	private GameObject player;
+
 	void Start()
 	{
-		
+		player = GameObject.FindGameObjectWithTag("Player");
+		destinationSetter = GetComponent<AIDestinationSetter>();
+		destinationSetter.target = player.transform;
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 
@@ -21,18 +25,19 @@ public class Enemy : MonoBehaviour
 
 	public void reduceHealth(float damage) {
 		health -= damage;
-
-		Debug.Log("Damage: " + damage);
 		if (health <= 0) {
 			Destroy(gameObject);
 		}
-
-		Debug.Log("health: " + health);
 	}
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if(collision.CompareTag("Projectile"))
-			reduceHealth(collision.GetComponent<Projectile>().GetDamage());
+		if (collision.CompareTag("Projectile")) {
+			Projectile projectile = collision.GetComponent<Projectile>();
+
+			if (projectile.SkillElementType == skillElementTypeToDestroy) {
+				reduceHealth(collision.GetComponent<Projectile>().GetDamage());
+			}
+		}		
 	}
 }

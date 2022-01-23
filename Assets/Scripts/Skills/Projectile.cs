@@ -5,8 +5,9 @@ using UnityEngine;
 public enum skillElementType
 {
 	Fire,
-	Lightning,
 	Water,
+	Lightning,
+	Suction
 
 }
 
@@ -19,6 +20,7 @@ public class Projectile : MonoBehaviour
 
 	public float FireRate { get { return firingRate; } }
 	public bool FireOnce { get { return fireOnce; } }
+	public skillElementType SkillElementType { get { return skillElementType; } }
 
 
 	void Start()
