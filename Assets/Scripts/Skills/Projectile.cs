@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
 	[SerializeField] private float damage = 100f;
 	[SerializeField] private float firingRate = 0.5f;
 	[SerializeField] private bool fireOnce = false;
-	[SerializeField] private skillElementType skillElementType;
+	[SerializeField] protected skillElementType skillElementType;
 
 	public float FireRate { get { return firingRate; } }
 	public bool FireOnce { get { return fireOnce; } }

@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-	[SerializeField] GameObject[] enemyPrefab;
+	[SerializeField] GameObject[] enemyPrefabs;
 
-	// Start is called before the first frame update
 	void Start()
 	{
-		StartCoroutine(Fire());
+		StartCoroutine(SpawnEnemies());
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		
 	}
 
-	private IEnumerator Fire()
+	private IEnumerator SpawnEnemies()
 	{
 		while (true) {
-			GameObject prefabToSpawn = enemyPrefab[Random.Range(0, enemyPrefab.Length)];
+			GameObject prefabToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
 			GameObject enemy = Instantiate(prefabToSpawn, transform.position, Quaternion.identity) as GameObject;
 			enemy.transform.SetParent(this.transform);
-			yield return new WaitForSeconds(Random.Range(1,3));
+			yield return new WaitForSeconds(Random.Range(2,5));
 		}
 	}
 }

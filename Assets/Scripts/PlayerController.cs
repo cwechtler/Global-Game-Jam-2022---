@@ -9,18 +9,23 @@ public class PlayerController : MonoBehaviour
 	[Space]
 	[Tooltip("Skill Prefabs")]
 	[SerializeField] private GameObject[] Skills;
+	[SerializeField] private GameObject rigFront;
+	[SerializeField] private GameObject rigBack;
 
-	private Rigidbody2D myrididbody2D;
-	private bool allowfire = true;
+	private Rigidbody2D myRigidbody2D;
+	public bool allowfire = true;
 	private float firingRate;
 	public GameObject activeSkill;
 	private Projectile activeSkillProjectile;
 	private GameObject projectileToDelete;
 	private int skillIndex;
 
+	private bool moveHorizontaly;
+	private bool moveVertically;
+
 	void Start()
 	{
-		myrididbody2D = GetComponent<Rigidbody2D>();
+		myRigidbody2D = GetComponent<Rigidbody2D>();
 		activeSkill = Skills[0];
 		activeSkillProjectile = activeSkill.GetComponent<Projectile>();
 		firingRate = activeSkillProjectile.FireRate;
@@ -34,10 +39,16 @@ public class PlayerController : MonoBehaviour
 		float fireY = Input.GetAxis("FireVertical");
 		float fireX = Input.GetAxis("FireHorizontal");
 
-		myrididbody2D.velocity = new Vector2(speed.x * inputX, speed.y * inputY);
+		myRigidbody2D.velocity = new Vector2(speed.x * inputX, speed.y * inputY);
+		moveHorizontaly = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
+		moveVertically = Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon;
 
 		if ((fireX != 0 || fireY != 0) && allowfire) {
-			StartCoroutine(Fire(fireX, fireY, activeSkillProjectile.FireOnce));
+			if (activeSkill.GetComponent<Projectile>().SkillElementType.ToString() == "Water") {
+				Cast();
+			}
+
+			//StartCoroutine(Fire(fireX, fireY, activeSkillProjectile.FireOnce));
 		}
 
 		if (Input.GetButtonDown("Jump")) {
@@ -51,6 +62,37 @@ public class PlayerController : MonoBehaviour
 			activeSkillProjectile = activeSkill.GetComponent<Projectile>();
 			firingRate = activeSkillProjectile.FireRate;
 		}
+		FlipDirection();
+
+		if (projectileToDelete == null) {
+			allowfire = true;
+		}
+
+		//if (activeSkill.GetComponent<Projectile>().SkillElementType.ToString() == "Water") {
+			//Transform spellTransform = activeSkill.GetComponent<Transform>();
+			//if (projectileToDelete) {
+			//	projectileToDelete.transform.position = transform.position;
+			//	projectileToDelete.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-fireY, -fireX) * 180 / Mathf.PI);
+			//}
+				
+			//print(projectileToDelete);
+			//Quaternion targetRotation = Quaternion.LookRotation(transform.up);
+			//if(fireY > 0)
+				
+			//if (fireY < 0)
+				//projectileToDelete.transform.eulerAngles = new Vector3(0, 0, 90);
+		//}
+	}
+
+	private void Cast() {
+		allowfire = false;
+		GameObject spell = Instantiate(activeSkill, transform.position, Quaternion.identity) as GameObject;
+		projectileToDelete = spell;
+		//spell.transform.SetParent(this.transform);
+		//Transform spellTransform = spell.GetComponent<Transform>();
+		//Quaternion targetRotation = Quaternion.LookRotation(transform.up);
+		//spellTransform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 90f * Time.deltaTime);
+
 	}
 
 	private IEnumerator Fire(float fireX, float fireY, bool fireOnce = false)
@@ -69,4 +111,48 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(firingRate);
 		allowfire = true;
 	}
+
+	private void FlipDirection()
+	{
+		if (moveHorizontaly && !moveVertically) {
+			rigFront.SetActive(true);
+			rigBack.SetActive(false);
+			float DirectionX = Mathf.Sign(myRigidbody2D.velocity.x);
+
+			if (DirectionX == -1) {
+				transform.localScale = new Vector2(1f, 1f);
+			}
+			if (DirectionX == 1) {
+				transform.localScale = new Vector2(-1f, 1f);
+			}
+		}
+
+		if (moveVertically) {
+			float DirectionY = Mathf.Sign(myRigidbody2D.velocity.y);
+
+			if (DirectionY == 1) {
+				rigFront.SetActive(false);
+				rigBack.SetActive(true);
+			}
+			if (DirectionY == -1) {
+				rigFront.SetActive(true);
+				rigBack.SetActive(false);
+			}
+		}
+	}
+
+	//private void OnTriggerEnter2D(Collider2D collision)
+	//{
+	//	print("Water");
+	//}
+
+	//private void OnTriggerStay2D(Collider2D collision)
+	//{
+	//	print("stay");
+	//}
+
+	//private void OnCollisionEnter2D(Collision2D collision)
+	//{
+	//	print("Water collide");
+	//}
 }
