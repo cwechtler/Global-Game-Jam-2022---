@@ -760,7 +760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60985474a00ea94baf1c777874977aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillElementType: 0
+  skillElementTypeToDestroy: 0
   health: 50
 --- !u!114 &616884642
 MonoBehaviour:
@@ -909,7 +909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &705507994
 Light:
   m_ObjectHideFlags: 0
@@ -1056,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60985474a00ea94baf1c777874977aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillElementType: 0
+  skillElementTypeToDestroy: 0
   health: 50
 --- !u!114 &770600821
 MonoBehaviour:
@@ -1504,7 +1504,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60985474a00ea94baf1c777874977aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillElementType: 0
+  skillElementTypeToDestroy: 0
   health: 50
 --- !u!114 &1368788354
 MonoBehaviour:
@@ -2146,7 +2146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f60985474a00ea94baf1c777874977aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillElementType: 0
+  skillElementTypeToDestroy: 0
   health: 50
 --- !u!114 &1805716653
 MonoBehaviour:
@@ -2569,6 +2569,46 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7842962337118550217, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962337126887278, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962337147802351, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962337387285385, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962337405083457, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962338378463450, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962338441358201, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962338738959459, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962338740822078, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+    - target: {fileID: 7842962338767504380, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
     - target: {fileID: 7897895198480080881, guid: 6fb43586d6b57c145b4d9e2f6accce1a, type: 3}
       propertyPath: speed.x
       value: 10
