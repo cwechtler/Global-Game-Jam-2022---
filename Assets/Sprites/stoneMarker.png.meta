@@ -81,8 +81,8 @@ TextureImporter:
     outline: []
     physicsShape:
     - - {x: -99, y: -66}
-      - {x: -75, y: 59}
-      - {x: 64, y: 61}
+      - {x: -81, y: 36}
+      - {x: 69, y: 38}
       - {x: 91, y: -69}
       - {x: -5, y: -104}
     bones: []
