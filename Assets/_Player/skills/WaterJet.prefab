@@ -533,7 +533,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 5
+    type: 12
     angle: 30
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -620,7 +620,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 1
+      value: 0.0001
       mode: 0
       spread: 0
       speed:
@@ -739,7 +739,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 6
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -3672,12 +3672,12 @@ ParticleSystem:
     radiusScale: 0.6
     collidesWith:
       serializedVersion: 2
-      m_Bits: 576
+      m_Bits: 1600
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5
     collisionMessages: 1
-    collidesWithDynamic: 0
+    collidesWithDynamic: 1
     interiorCollisions: 1
   TriggerModule:
     enabled: 0
@@ -4715,7 +4715,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5979919121071485490}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.68, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.46, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4514194019559885428}
@@ -4894,6 +4894,4 @@ MonoBehaviour:
   firingRate: 0.5
   fireOnce: 0
   skillElementType: 1
-  waterJetDuration: 1.5
-  soundEffectFadeInTime: 1
-  audioVolume: 0.4
+  maxAudioVolume: 0.4

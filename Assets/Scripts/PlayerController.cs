@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 	[Space]
 	[Tooltip("Skill Prefabs")]
 	[SerializeField] private GameObject[] Skills;
+	[SerializeField] private Transform skillSpawner;
+	[SerializeField] private Transform skillSpawnPoint;
 	[SerializeField] private GameObject rigFront;
 	[SerializeField] private GameObject rigBack;
 
@@ -43,12 +45,22 @@ public class PlayerController : MonoBehaviour
 		moveHorizontaly = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
 		moveVertically = Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon;
 
-		if ((fireX != 0 || fireY != 0) && allowfire) {
-			if (activeSkill.GetComponent<Projectile>().SkillElementType.ToString() == "Water") {
-				Cast();
+		if ((fireX != 0 || fireY != 0)) {
+			skillSpawner.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-fireY, -fireX) * 180 / Mathf.PI);
+			if (allowfire) {
+				string skillType = activeSkill.GetComponent<Projectile>().SkillElementType.ToString();
+				switch (skillType) {
+					case "Water":
+						Cast();
+						break;
+					case "Suction":
+						PlaceSkill();
+						break;
+					default:
+						StartCoroutine(Fire(fireX, fireY, activeSkillProjectile.FireOnce));
+						break;
+				}
 			}
-
-			//StartCoroutine(Fire(fireX, fireY, activeSkillProjectile.FireOnce));
 		}
 
 		if (Input.GetButtonDown("Jump")) {
@@ -64,23 +76,8 @@ public class PlayerController : MonoBehaviour
 		}
 		FlipDirection();
 
-		if (projectileToDelete == null) {
-			allowfire = true;
-		}
-
-		//if (activeSkill.GetComponent<Projectile>().SkillElementType.ToString() == "Water") {
-			//Transform spellTransform = activeSkill.GetComponent<Transform>();
-			//if (projectileToDelete) {
-			//	projectileToDelete.transform.position = transform.position;
-			//	projectileToDelete.transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-fireY, -fireX) * 180 / Mathf.PI);
-			//}
-				
-			//print(projectileToDelete);
-			//Quaternion targetRotation = Quaternion.LookRotation(transform.up);
-			//if(fireY > 0)
-				
-			//if (fireY < 0)
-				//projectileToDelete.transform.eulerAngles = new Vector3(0, 0, 90);
+		//if (projectileToDelete == null) {
+		//	allowfire = true;
 		//}
 	}
 
@@ -88,11 +85,11 @@ public class PlayerController : MonoBehaviour
 		allowfire = false;
 		GameObject spell = Instantiate(activeSkill, transform.position, Quaternion.identity) as GameObject;
 		projectileToDelete = spell;
-		//spell.transform.SetParent(this.transform);
-		//Transform spellTransform = spell.GetComponent<Transform>();
-		//Quaternion targetRotation = Quaternion.LookRotation(transform.up);
-		//spellTransform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, 90f * Time.deltaTime);
+	}
 
+	private void PlaceSkill() {
+		allowfire = false;
+		GameObject spell = Instantiate(activeSkill, skillSpawnPoint.position, Quaternion.identity) as GameObject;
 	}
 
 	private IEnumerator Fire(float fireX, float fireY, bool fireOnce = false)

@@ -4,19 +4,16 @@ using UnityEngine;
 
 public class WaterJet : Projectile
 {
-	//[Space]
-	//[SerializeField]
-	private float waterJetDuration = 1.5f; 
-	//[Range(.01f, 1f)] [SerializeField]
-	private float soundEffectFadeInTime = 1f;
+	[Space]
+	[SerializeField] private float waterJetDuration = 1.5f; 
 	[SerializeField] private float maxAudioVolume = .4f;
-	
 
 	private GameObject player;
 	private AudioSource audioSource;
 	private ParticleSystem waterjetParticleSystem;
 	private bool clear = false;
 	private float audioVolume = .4f;
+	private float soundEffectFadeInTime = 1f;
 
 	void Start()
 	{
@@ -33,7 +30,7 @@ public class WaterJet : Projectile
 
 		transform.position = player.transform.position;
 		if (fireX != 0 || fireY != 0) {
-			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(fireY, fireX) * 180 / Mathf.PI);
+			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-fireX, fireY) * 180 / Mathf.PI);
 		}
 		if (!clear) {
 			if (audioVolume <= maxAudioVolume) {
