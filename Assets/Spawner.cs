@@ -4,7 +4,15 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-	[SerializeField] GameObject[] enemyPrefabs;
+	[Tooltip("Random between 2 seconds and this number")]
+	[Range(1, 10)] [SerializeField] private int maxWaitToSpawn = 5;
+	[SerializeField] private bool random = true;
+	[ConditionalHide("random", true, true)]
+	[SerializeField] private GameObject enemyPrefab;
+
+	[ConditionalHide("random", true)]
+	[SerializeField] private GameObject[] enemyPrefabs;
+
 
 	void Start()
 	{
@@ -19,10 +27,17 @@ public class Spawner : MonoBehaviour
 	private IEnumerator SpawnEnemies()
 	{
 		while (true) {
-			GameObject prefabToSpawn = enemyPrefabs[Random.Range(0, enemyPrefabs.Length)];
+			GameObject prefabToSpawn;
+			if (random) {
+				prefabToSpawn = enemyPrefabs[UnityEngine.Random.Range(0, enemyPrefabs.Length)];
+			}
+			else {
+				prefabToSpawn = enemyPrefab;
+			}
+
 			GameObject enemy = Instantiate(prefabToSpawn, transform.position, Quaternion.identity) as GameObject;
 			enemy.transform.SetParent(this.transform);
-			yield return new WaitForSeconds(Random.Range(2,5));
+			yield return new WaitForSeconds(UnityEngine.Random.Range(2, maxWaitToSpawn));
 		}
 	}
 }

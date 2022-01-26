@@ -8,12 +8,15 @@ public class VacumeHole : Projectile
 	[Space]
 	[SerializeField] private float vacumeHoleDuration = 2f;
 
+	private List<GameObject> enemies = new List<GameObject>();
+	private ParticleSystem[] vacumeHoleParticleSystems;
+
 	void Start()
 	{
+		vacumeHoleParticleSystems = GetComponentsInChildren<ParticleSystem>();
 		StartCoroutine(DestroySkill(vacumeHoleDuration));
 	}
 
-	// Update is called once per frame
 	void Update()
 	{
 		
@@ -21,22 +24,31 @@ public class VacumeHole : Projectile
 
 	protected override void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (!collision.CompareTag("Player")) {
+		if (collision.CompareTag("Enemy")) {
 			skillElementType type = collision.GetComponent<Enemy>().SkillElementTypeToDestroy;
 			if (skillElementType == type) {
+				enemies.Add(collision.gameObject);
 				collision.GetComponent<AIDestinationSetter>().target = transform;
+				collision.GetComponent<AIPath>().maxSpeed = 6f;
 			}		
 		}
-	}
-
-	protected override void OnCollisionEnter2D(Collision2D collision)
-	{
-		Destroy(collision.gameObject);
 	}
 
 	private IEnumerator DestroySkill(float skillDuration)
 	{
 		yield return new WaitForSeconds(skillDuration);
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		player.GetComponent<PlayerController>().allowfire = true;
+		foreach (var enemy in enemies) {
+			if (enemy != null) {
+				enemy.GetComponent<AIDestinationSetter>().target = GameObject.FindGameObjectWithTag("Player").transform;
+				enemy.GetComponent<AIPath>().maxSpeed = 4f;
+			}	
+		}
+		foreach (var vacumeHoleParticleSystem in vacumeHoleParticleSystems) {
+			vacumeHoleParticleSystem.Stop();
+		}	
+		yield return new WaitForSeconds(1f);
 		Destroy(gameObject);
 	}
 }

@@ -14,7 +14,7 @@ public class Destroyer : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (!collision.CompareTag("Player")) {
+		if (collision.CompareTag("Enemy")) {
 			skillElementType type = collision.GetComponent<Enemy>().SkillElementTypeToDestroy;
 			if (skillElementType == type) {
 				Destroy(collision.gameObject);
