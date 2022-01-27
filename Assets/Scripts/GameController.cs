@@ -34,7 +34,7 @@ public class GameController : MonoBehaviour
 	{
 		yield return new WaitForSeconds(waitTime);
 
-		AstarPath.active.Scan();
+		//AstarPath.active.Scan();
 	}
 
 	private void FindSceneObjects() {

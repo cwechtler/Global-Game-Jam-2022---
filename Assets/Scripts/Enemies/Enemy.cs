@@ -42,10 +42,9 @@ public class Enemy : MonoBehaviour
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
 		if (collision.CompareTag("Projectile")) {
-			Projectile projectile = collision.GetComponent<Projectile>();
-
+			Projectile projectile = collision.GetComponentInParent<Projectile>();
 			if (projectile.SkillElementType == skillElementTypeToDestroy) {
-				reduceHealth(collision.GetComponent<Projectile>().GetDamage());
+				reduceHealth(projectile.GetDamage());
 			}
 		}		
 	}

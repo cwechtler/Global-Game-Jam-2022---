@@ -22,32 +22,18 @@ public class Projectile : MonoBehaviour
 	public bool FireOnce { get { return fireOnce; } }
 	public skillElementType SkillElementType { get { return skillElementType; } }
 
-
-	void Start()
-	{
-		this.transform.up = this.GetComponent<Rigidbody2D>().velocity;
-	}
-
-	void Update()
-	{
-
-	}
-
 	public float GetDamage()
 	{
 		return damage;
 	}
-	public void Hit()
-	{
-		Destroy(gameObject);
-	}
+
 	protected virtual void OnTriggerEnter2D(Collider2D collision)
 	{
-		//Destroy(gameObject);
+		Destroy(gameObject);
 	}
 
 	protected virtual void OnCollisionEnter2D(Collision2D collision)
 	{
-		//Destroy(gameObject);
+		Destroy(gameObject);
 	}
 }

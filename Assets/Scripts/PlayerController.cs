@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject[] Skills;
 	[SerializeField] private Transform skillSpawner;
 	[SerializeField] private Transform skillSpawnPoint;
+	[SerializeField] private GameObject lightningEndPoint;
+	[SerializeField] private Transform notch;
 	[SerializeField] private GameObject rigFront;
 	[SerializeField] private GameObject rigBack;
 
@@ -24,6 +26,8 @@ public class PlayerController : MonoBehaviour
 
 	private bool moveHorizontaly;
 	private bool moveVertically;
+
+	public GameObject LightningEndPoint { get => lightningEndPoint; }
 
 	void Start()
 	{
@@ -51,6 +55,7 @@ public class PlayerController : MonoBehaviour
 				string skillType = activeSkill.GetComponent<Projectile>().SkillElementType.ToString();
 				switch (skillType) {
 					case "Water":
+					case "Lightning":
 						Cast();
 						break;
 					case "Suction":
@@ -64,6 +69,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (Input.GetButtonDown("Jump")) {
+			allowfire = false;
 			if (Skills.Length > skillIndex + 1) {
 				skillIndex++;
 			}
@@ -117,10 +123,10 @@ public class PlayerController : MonoBehaviour
 			float DirectionX = Mathf.Sign(myRigidbody2D.velocity.x);
 
 			if (DirectionX == -1) {
-				transform.localScale = new Vector2(1f, 1f);
+				notch.localScale = new Vector2(1f, 1f);
 			}
 			if (DirectionX == 1) {
-				transform.localScale = new Vector2(-1f, 1f);
+				notch.localScale = new Vector2(-1f, 1f);
 			}
 		}
 

@@ -32,10 +32,10 @@ public enum LightningBoltAnimationMode
 /// Allows creation of simple lightning bolts
 /// </summary>
 [RequireComponent(typeof(LineRenderer))]
-public class LightningBoltScript : Projectile
+public class LightningBoltScript : MonoBehaviour
 {
-	[SerializeField] private float duration = 5f;
-	[Space]
+	//[SerializeField] private float duration = 5f;
+	//[Space]
 	[Tooltip("The game object where the lightning will emit from. If null, StartPosition is used.")]
 	public GameObject StartObject;
 
@@ -90,8 +90,8 @@ public class LightningBoltScript : Projectile
 	private int animationOffsetIndex;
 	private int animationPingPongDirection = 1;
 	private bool orthographic;
-	private bool hitObject = false;
-	private CapsuleCollider2D capsule;
+	//private bool hitObject = false;
+	//private CapsuleCollider2D capsule;
 
 	private void GetPerpendicularVector(ref Vector3 directionNormalized, out Vector3 side)
 	{
@@ -283,13 +283,10 @@ public class LightningBoltScript : Projectile
 	private void Start()
 	{
 		StartObject = GameObject.FindGameObjectWithTag("Player");
-		capsule = GetComponent<CapsuleCollider2D>();
-		EndObject = this.gameObject;
 		orthographic = (Camera.main != null && Camera.main.orthographic);
 		lineRenderer = GetComponent<LineRenderer>();
 		lineRenderer.positionCount = 0;
 		UpdateFromMaterialChange();
-		StartCoroutine(DestroyLightning());
 	}
 
 	private void Update()
@@ -308,14 +305,6 @@ public class LightningBoltScript : Projectile
 			}
 		}
 		timer -= Time.deltaTime;
-	}
-
-	private IEnumerator DestroyLightning() {
-		yield return new WaitForSeconds(duration);
-		if (!hitObject) {
-			
-			Destroy(gameObject);
-		}
 	}
 
 	/// <summary>
@@ -363,18 +352,7 @@ public class LightningBoltScript : Projectile
 		}
 	}
 
-	protected override void OnTriggerEnter2D(Collider2D collision)
-	{
-		hitObject = true;
-		if (collision.gameObject.CompareTag("Enemy")) {
-			EndObject = collision.gameObject;
-		}
-		else {
-			GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
-			Destroy(gameObject, 2f);
-		}
-	}
-
+	//For LineCollision
 	public Vector3[] GetPositions()
 	{
 		Vector3[] positions = new Vector3[lineRenderer.positionCount];
@@ -382,6 +360,7 @@ public class LightningBoltScript : Projectile
 		return positions;
 	}
 
+	//For LineCollision
 	public float GetWidth()
 	{
 		return lineRenderer.startWidth;
