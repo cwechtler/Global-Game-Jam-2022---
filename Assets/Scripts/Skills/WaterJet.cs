@@ -10,7 +10,8 @@ public class WaterJet : Projectile
 
 	private GameObject player;
 	private AudioSource audioSource;
-	private ParticleSystem waterjetParticleSystem;
+	private ParticleSystem[] waterjetParticleSystems;
+	//private ParticleSystem waterShieldParticleSystem;
 	private bool clear = false;
 	private float audioVolume = .4f;
 	private float soundEffectFadeInTime = 1f;
@@ -19,7 +20,7 @@ public class WaterJet : Projectile
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
 		audioSource = GetComponent<AudioSource>();
-		waterjetParticleSystem = GetComponentInChildren<ParticleSystem>();
+		waterjetParticleSystems = GetComponentsInChildren<ParticleSystem>();
 		StartCoroutine(DestroySkill(waterJetDuration));
 	}
 
@@ -51,7 +52,7 @@ public class WaterJet : Projectile
 		}
 		else {
 			if (audioVolume > 0) {
-				audioVolume -= (waterjetParticleSystem.main.duration * .1f) * Time.deltaTime;
+				audioVolume -= (waterjetParticleSystems[0].main.duration * .1f) * Time.deltaTime;
 				audioSource.volume = audioVolume;
 			}
 		}
@@ -62,7 +63,10 @@ public class WaterJet : Projectile
 		yield return new WaitForSeconds(skillDuration);
 		clear = true;
 		player.GetComponent<PlayerController>().allowfire = true;
-		waterjetParticleSystem.Stop();
+		foreach (var waterjetParticleSystem in waterjetParticleSystems) {
+			waterjetParticleSystem.Stop();
+		}	
+		//waterShieldParticleSystem.Stop();
 		yield return new WaitForSeconds(1f);
 		Destroy(gameObject);
 	}

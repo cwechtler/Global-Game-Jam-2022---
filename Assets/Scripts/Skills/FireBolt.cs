@@ -21,6 +21,7 @@ public class FireBolt : Projectile
 
 	void Start()
 	{
+		transform.up = GetComponent<Rigidbody2D>().velocity;
 		if (ProjectileParticleSystem) {
 			ProjectileParticleSystem.Play();
 		}
