@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+
+		print(GameController.instance.EnemiesKilled);
+
 		float inputY = Input.GetAxis("Vertical");
 		float inputX = Input.GetAxis("Horizontal");
 
@@ -69,7 +72,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (Input.GetButtonDown("Jump")) {
-			allowfire = false;
+			allowfire = true;
 			if (Skills.Length > skillIndex + 1) {
 				skillIndex++;
 			}

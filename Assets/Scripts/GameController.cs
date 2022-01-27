@@ -10,6 +10,9 @@ public class GameController : MonoBehaviour
 	public bool isPaused { get; private set; }
 	public float timeDeltaTime { get; private set; }
 	public bool OptionsOverlayOpen { get; set; } = false;
+	public int EnemiesKilled { get; set; }
+
+	private int enemiesKilled;
 
 	public List<string> collectedItems;
 

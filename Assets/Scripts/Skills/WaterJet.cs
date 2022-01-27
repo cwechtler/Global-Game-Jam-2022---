@@ -66,7 +66,6 @@ public class WaterJet : Projectile
 		foreach (var waterjetParticleSystem in waterjetParticleSystems) {
 			waterjetParticleSystem.Stop();
 		}	
-		//waterShieldParticleSystem.Stop();
 		yield return new WaitForSeconds(1f);
 		Destroy(gameObject);
 	}
