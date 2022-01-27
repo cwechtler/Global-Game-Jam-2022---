@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 		}
 
 		if (Input.GetButtonDown("Jump")) {
-			allowfire = false;
+			allowfire = true;
 			if (Skills.Length > skillIndex + 1) {
 				skillIndex++;
 			}
