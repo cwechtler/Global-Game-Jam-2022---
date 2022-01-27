@@ -6,7 +6,7 @@ public class WaterJet : Projectile
 {
 	[Space]
 	[SerializeField] private float waterJetDuration = 1.5f; 
-	[SerializeField] private float maxAudioVolume = .4f;
+	[SerializeField] private float maxAudioVolume = 1f;
 
 	private GameObject player;
 	private AudioSource audioSource;
