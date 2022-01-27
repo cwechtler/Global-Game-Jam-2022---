@@ -39,6 +39,9 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
+
+		print(GameController.instance.EnemiesKilled);
+
 		float inputY = Input.GetAxis("Vertical");
 		float inputX = Input.GetAxis("Horizontal");
 

@@ -51,6 +51,7 @@ public class FireBolt : Projectile
 				Enemy enemy = col.GetComponent<Enemy>();
 
 				if (enemy.SkillElementTypeToDestroy == skillElementType) {
+					//GameController.instance.EnemiesKilled ++;
 					Destroy(col.gameObject);
 				}
 			}
