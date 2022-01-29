@@ -524,7 +524,6 @@ GameObject:
   - component: {fileID: 9160323744690344009}
   - component: {fileID: 9160323744690344010}
   - component: {fileID: 9160323744690344011}
-  - component: {fileID: 6922318562283194318}
   m_Layer: 5
   m_Name: HUD
   m_TagString: Untagged
@@ -620,43 +619,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &6922318562283194318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9160323744690344004}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2cb35c81e48b324683d6aafd7370304, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fadePanel: {fileID: 0}
-  pausePanel: {fileID: 864371655}
-  defaultTextColor:
-    serializedVersion: 2
-    rgba: 4294937088
-  activeTextColor:
-    serializedVersion: 2
-    rgba: 4278190335
-  playerHealthBar: {fileID: 9160323745153369392}
-  ScoreText: {fileID: 9160323744985149306}
-  skillTexts:
-  - {fileID: 9160323744778970987}
-  - {fileID: 9160323745200069594}
-  - {fileID: 9160323745307845540}
-  - {fileID: 9160323744953215462}
-  skillCoolDowns:
-  - {fileID: 9160323744795160499}
-  - {fileID: 9160323746390097078}
-  - {fileID: 9160323746432450378}
-  - {fileID: 9160323745118436401}
-  skillCooldownFill:
-  - {fileID: 9160323744552654102}
-  - {fileID: 9160323746192738524}
-  - {fileID: 9160323745027949749}
-  - {fileID: 9160323745655720815}
 --- !u!1 &9160323744720503391
 GameObject:
   m_ObjectHideFlags: 0
