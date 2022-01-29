@@ -103,6 +103,7 @@ public class SoundManager : MonoBehaviour {
 				MusicAudioSource.clip = music[0];
 				break;
 			case "Test Level":
+			case "MikeTest":
 			case "Level 1":
 				MusicAudioSource.clip = music[1];
 				break;
