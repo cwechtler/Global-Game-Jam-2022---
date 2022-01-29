@@ -12,7 +12,10 @@ public class GameController : MonoBehaviour
 	public bool OptionsOverlayOpen { get; set; } = false;
 	public int EnemiesKilled { get; set; }
 	public int ActiveSkillIndex { get; set; }
-
+	public int Shadow { get => shadow; }
+	public int Air { get => air; }
+	public int Fire { get => fire; }
+	public int Water { get => water; }
 
 	private int enemiesKilled;
 	private GameObject fadePanel;
