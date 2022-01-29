@@ -30,6 +30,19 @@ public class LevelManager : MonoBehaviour {
 		if (SceneManager.GetActiveScene().name != currentScene) {
 			currentScene = SceneManager.GetActiveScene().name;
 		}
+
+		if (Input.GetButtonDown("Enter")) {
+			if (currentScene != "Main Menu") {
+				LoadLevel("Main Menu");
+			}
+			else {
+				LoadLevel("Test Level");
+			}
+		}
+
+		if (Input.GetButtonDown("Cancel")) {
+			QuitRequest();
+		}
 	}
 
 	public void StartNewGame()

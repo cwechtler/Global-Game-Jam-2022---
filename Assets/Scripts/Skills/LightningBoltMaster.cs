@@ -25,8 +25,6 @@ public class LightningBoltMaster : Projectile
 	private IEnumerator DestroyLightning(float skillDuration)
 	{
 		yield return new WaitForSeconds(skillDuration);
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		player.GetComponent<PlayerController>().allowfire = true;
 		feetParticleSystem.Stop();
 		yield return new WaitForSeconds(.3f);
 		Destroy(gameObject);

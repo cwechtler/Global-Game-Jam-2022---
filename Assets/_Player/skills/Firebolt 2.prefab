@@ -14552,8 +14552,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c73c8494c53e599408f9ff1705f4eb7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillImage: {fileID: 21300000, guid: 411bfa28278b0b54cabcbbfe948d2ef0, type: 3}
   damage: 50
   firingRate: 1
+  coolDownTime: 2
   fireOnce: 0
   skillElementType: 0
   range: 1

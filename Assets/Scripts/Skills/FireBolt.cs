@@ -16,7 +16,6 @@ public class FireBolt : Projectile
 	[SerializeField] private AudioSource ProjectileCollisionSound;
 
 	private bool stop = false;
-	private float fadeout = 255;
 	ParticleSystem.MainModule main;
 
 	void Start()

@@ -7,8 +7,10 @@ public class Enemy : MonoBehaviour
 {
 	[SerializeField] private skillElementType skillElementTypeToDestroy;
 	[SerializeField] private float health = 1f;
+	[SerializeField] private int damage = 10;
 
 	public skillElementType SkillElementTypeToDestroy { get { return skillElementTypeToDestroy; } }
+	public int Damage { get => damage;}
 
 	private AIPath aipath;
 	private AIDestinationSetter destinationSetter;

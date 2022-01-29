@@ -13,14 +13,18 @@ public enum skillElementType
 
 public class Projectile : MonoBehaviour
 {
+	[SerializeField] private Sprite skillImage;
 	[SerializeField] private float damage = 100f;
 	[SerializeField] private float firingRate = 0.5f;
+	[SerializeField] private float coolDownTime = 5f;
 	[SerializeField] private bool fireOnce = false;
 	[SerializeField] protected skillElementType skillElementType;
 
 	public float FireRate { get { return firingRate; } }
 	public bool FireOnce { get { return fireOnce; } }
 	public skillElementType SkillElementType { get { return skillElementType; } }
+	public float CoolDownTime { get => coolDownTime; set => coolDownTime = value; }
+	public Sprite SkillImage { get => skillImage;}
 
 	public float GetDamage()
 	{

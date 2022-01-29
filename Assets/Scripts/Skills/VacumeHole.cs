@@ -19,7 +19,7 @@ public class VacumeHole : Projectile
 
 	void Update()
 	{
-		
+
 	}
 
 	protected override void OnTriggerEnter2D(Collider2D collision)
@@ -37,8 +37,6 @@ public class VacumeHole : Projectile
 	private IEnumerator DestroySkill(float skillDuration)
 	{
 		yield return new WaitForSeconds(skillDuration);
-		GameObject player = GameObject.FindGameObjectWithTag("Player");
-		player.GetComponent<PlayerController>().allowfire = true;
 		foreach (var enemy in enemies) {
 			if (enemy != null) {
 				enemy.GetComponent<AIDestinationSetter>().target = GameObject.FindGameObjectWithTag("Player").transform;

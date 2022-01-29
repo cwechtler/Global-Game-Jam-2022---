@@ -4891,8 +4891,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df7edfc3abc1d84597122d10c4dab57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  skillImage: {fileID: 21300000, guid: 06884c1d930d30b45afda77d43214048, type: 3}
   damage: 100
   firingRate: 0.5
+  coolDownTime: 5
   fireOnce: 0
   skillElementType: 1
   waterJetDuration: 1.5

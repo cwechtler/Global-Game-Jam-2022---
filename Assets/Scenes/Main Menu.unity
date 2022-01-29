@@ -178,18 +178,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5739616327053476985, guid: c0316f04e4cb8104a8da140a90463652, type: 3}
-      propertyPath: music.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5739616327053476985, guid: c0316f04e4cb8104a8da140a90463652, type: 3}
-      propertyPath: music.Array.data[0]
-      value: 
-      objectReference: {fileID: 8300000, guid: c16e61dac102f84458b0cd2b75a85e69, type: 3}
-    - target: {fileID: 5739616327053476985, guid: c0316f04e4cb8104a8da140a90463652, type: 3}
-      propertyPath: music.Array.data[1]
-      value: 
-      objectReference: {fileID: 8300000, guid: 83bf78c9b79bb7044bdc807b79b0c42a, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0316f04e4cb8104a8da140a90463652, type: 3}
 --- !u!1 &92986184
@@ -1147,6 +1135,8 @@ GameObject:
   - component: {fileID: 1533623417}
   - component: {fileID: 1533623416}
   - component: {fileID: 1533623415}
+  - component: {fileID: 1533623419}
+  - component: {fileID: 1533623418}
   m_Layer: 5
   m_Name: Start Button
   m_TagString: Untagged
@@ -1268,6 +1258,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533623413}
   m_CullTransparentMesh: 1
+--- !u!114 &1533623418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533623413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813e9cc23b2cf43469eacb68859b523b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1533623419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533623413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb8d72ef35197e40bdaf73059a61ad0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1775074063
 GameObject:
   m_ObjectHideFlags: 0

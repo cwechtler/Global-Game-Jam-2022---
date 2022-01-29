@@ -62,7 +62,6 @@ public class WaterJet : Projectile
 	{
 		yield return new WaitForSeconds(skillDuration);
 		clear = true;
-		player.GetComponent<PlayerController>().allowfire = true;
 		foreach (var waterjetParticleSystem in waterjetParticleSystems) {
 			waterjetParticleSystem.Stop();
 		}	

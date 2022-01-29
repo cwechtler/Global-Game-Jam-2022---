@@ -52,10 +52,14 @@ public class SoundManager : MonoBehaviour {
 		if (ambientAudioSource.isPlaying) {
 
 		}
-		PlayRandomAmbient();
+		if (LevelManager.instance.currentScene != "Main Menu") {
+			PlayRandomAmbient();
+		}
+
 		if(music.Length > 0)
 			MusicSelect();
-		VolumeFadeIn(MusicAudioSource);   
+		VolumeFadeIn(MusicAudioSource);
+		VolumeFadeIn(ambientAudioSource);
 	}
 
 	void VolumeFadeIn(AudioSource audioSource) {
@@ -126,7 +130,7 @@ public class SoundManager : MonoBehaviour {
 	}
 
 	public void SetButtonClip(){
-		SFXAudioSource.PlayOneShot(buttonClick, .6f);
+		SFXAudioSource.PlayOneShot(buttonClick, 2f);
 	}
 
 	public void PlayWalkClip() {

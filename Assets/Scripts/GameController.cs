@@ -11,11 +11,9 @@ public class GameController : MonoBehaviour
 	public float timeDeltaTime { get; private set; }
 	public bool OptionsOverlayOpen { get; set; } = false;
 	public int EnemiesKilled { get; set; }
+	public int ActiveSkillIndex { get; set; }
 
 	private int enemiesKilled;
-
-	public List<string> collectedItems;
-
 	private GameObject fadePanel;
 	private Vector3 spawnPointLocation;
 	private Animator animator;
@@ -30,14 +28,25 @@ public class GameController : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
-		StartCoroutine(LateStart(.1f));
+		//StartCoroutine(LateStart(.1f));
+	}
+
+	private void Update()
+	{
+		if (Input.GetButtonDown("Submit")) {
+			if (!GameController.instance.isPaused) {
+				GameController.instance.PauseGame();
+			}
+			else {
+				GameController.instance.ResumeGame();
+			}
+		}
 	}
 
 	IEnumerator LateStart(float waitTime)
 	{
 		yield return new WaitForSeconds(waitTime);
-
-		//AstarPath.active.Scan();
+		AstarPath.active.Scan();
 	}
 
 	private void FindSceneObjects() {
@@ -48,35 +57,16 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	public List<string> GetCollectedItems() {
-		return collectedItems;
-	}
-
-	public void CollectItems(string itemName) {
-		collectedItems.Add(itemName);
-		//GameCanvasController gameCanvasController = FindObjectOfType<GameCanvasController>();
-
-		//gameCanvasController.AddCollectedItem(itemName);
-
-		if (collectedItems.Count >= 4) {
-			animator.SetBool("FadeOut", true);
-			LevelManager.instance.LoadNextLevel();
-			collectedItems.Clear();
-		}
-	}
-
 	public void StartGame()
 	{
-		AstarPath.active.Scan();
-		PlayerPrefsManager.DeletePlayerPrefsPlayerInfo();
-		collectedItems.Clear();
+		StartCoroutine(LateStart(.1f));
+		//PlayerPrefsManager.DeletePlayerPrefsPlayerInfo();
 	}
 
 	public void Continue()
 	{
 		continueGame = true;
 
-		collectedItems = PlayerPrefsManager.GetItems();
 		spawnPointLocation = new Vector3(PlayerPrefsManager.GetPlayerSpawnpointX(), PlayerPrefsManager.GetPlayerSpawnpointY(), 0);
 
 		LevelManager.instance.LoadLevel(3, .9f);
@@ -101,11 +91,8 @@ public class GameController : MonoBehaviour
 
 
 	public void SavePlayerInfo() {
-		PlayerPrefsManager.SetItems(collectedItems);
 		PlayerPrefsManager.SetPlayerSpawnpointX(playerGO.transform.position.x);
 		PlayerPrefsManager.SetPlayerSpawnpointY(playerGO.transform.position.y);
-
-		collectedItems.Clear();
 	}
 
 	public void LoadSceneObjects() {
