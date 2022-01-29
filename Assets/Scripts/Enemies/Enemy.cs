@@ -39,6 +39,7 @@ public class Enemy : MonoBehaviour
 		if (health <= 0) {
 			Destroy(gameObject);
 			GameController.instance.EnemiesKilled++;
+			GameController.instance.AddEnemyType(skillElementTypeToDestroy);
 		}
 	}
 
