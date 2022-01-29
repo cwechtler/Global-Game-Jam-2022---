@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test Level.unity
     guid: ae91cf1094f63b742aa33cf44b7d5d85
+  - enabled: 1
+    path: Assets/Scenes/Lose Level.unity
+    guid: 548ba720bceb7e74c9b59ffcd4fc2878
   m_configObjects: {}
