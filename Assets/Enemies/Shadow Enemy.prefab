@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  drawGizmos: 1
+  drawGizmos: 0
   detailedGizmos: 1
   startEndModifier:
     addPoints: 0
