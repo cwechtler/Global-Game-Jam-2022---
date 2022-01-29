@@ -51,11 +51,6 @@ public class LevelManager : MonoBehaviour {
 		StartCoroutine(LoadScene(3, .9f));
 	}
 
-	public void Continue()
-	{
-		GameController.instance.Continue();
-	}
-
 	public void LoadLevel (string name){
 		Debug.Log("Level load requested for: " + name);
 		SceneManager.LoadScene(name);
