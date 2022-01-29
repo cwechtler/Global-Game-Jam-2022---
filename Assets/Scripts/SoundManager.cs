@@ -32,20 +32,20 @@ public class SoundManager : MonoBehaviour {
 
 	private void Start()
 	{
-		if (PlayerPrefs.HasKey("master_volume")) {
-			ChangeMasterVolume(PlayerPrefsManager.GetMasterVolume());
-		}
-		else {
-			ChangeMasterVolume(-20f);
-		}
+		//if (PlayerPrefs.HasKey("master_volume")) {
+		//	ChangeMasterVolume(PlayerPrefsManager.GetMasterVolume());
+		//}
+		//else {
+		//	ChangeMasterVolume(-20f);
+		//}
 
-		if (PlayerPrefs.HasKey("music_volume")) {
-			ChangeMusicVolume(PlayerPrefsManager.GetMusicVolume());
-		}
+		//if (PlayerPrefs.HasKey("music_volume")) {
+		//	ChangeMusicVolume(PlayerPrefsManager.GetMusicVolume());
+		//}
 
-		if (PlayerPrefs.HasKey("sfx_volume")) {
-			ChangeSFXVolume(PlayerPrefsManager.GetSFXVolume());
-		}
+		//if (PlayerPrefs.HasKey("sfx_volume")) {
+		//	ChangeSFXVolume(PlayerPrefsManager.GetSFXVolume());
+		//}
 	}
 
 	private void Update(){
