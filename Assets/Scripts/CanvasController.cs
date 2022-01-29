@@ -21,7 +21,7 @@ public class CanvasController : MonoBehaviour
 
 	private void Start()
 	{
-		ScoreText.color = defaultTextColor;
+		//ScoreText.color = defaultTextColor;
 		UpdateTextColor();
 		//animator = fadePanel.GetComponent<Animator>();
 	}

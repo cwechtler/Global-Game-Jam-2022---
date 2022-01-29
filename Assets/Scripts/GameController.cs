@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour
 
 	public void StartGame()
 	{
-		StartCoroutine(LateStart(.1f));
+		//StartCoroutine(LateStart(.1f));
 	}
 
 	public void PauseGame()

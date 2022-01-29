@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void ReduceHealth(int damage)
+	public void ReduceHealth(int damage)
 	{
 		health -= damage;
 		canvasController.ReduceHealthBar(health);
@@ -212,13 +212,4 @@ public class PlayerController : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 		LevelManager.instance.LoadLevel("Lose Level");
 	}
-
-	private void OnCollisionEnter2D(Collision2D collision)
-	{
-		if (collision.gameObject.CompareTag("Enemy")) {
-			ReduceHealth(collision.gameObject.GetComponent<Enemy>().Damage);
-		}	
-	}
-
-
 }

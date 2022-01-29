@@ -10,11 +10,11 @@ public class Enemy : MonoBehaviour
 	[SerializeField] private int damage = 10;
 
 	public skillElementType SkillElementTypeToDestroy { get { return skillElementTypeToDestroy; } }
-	public int Damage { get => damage;}
 
 	private AIPath aipath;
 	private AIDestinationSetter destinationSetter;
 	private GameObject player;
+	private float damageTimer;
 
 	void Start()
 	{
@@ -32,6 +32,10 @@ public class Enemy : MonoBehaviour
 		else {
 			FlipDirection();
 		}
+
+		if (damageTimer > 0) {
+			damageTimer -= Time.deltaTime;
+		}
 	}
 
 	public void reduceHealth(float damage) {
@@ -40,6 +44,20 @@ public class Enemy : MonoBehaviour
 			Destroy(gameObject);
 			GameController.instance.EnemiesKilled++;
 			GameController.instance.AddEnemyType(skillElementTypeToDestroy);
+		}
+	}
+
+	private void DamagePlayer() {
+		damageTimer = 1;
+		player.GetComponent<PlayerController>().ReduceHealth(damage);
+	}
+
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Player")) {
+			if (damageTimer <= 0) {
+				DamagePlayer();
+			}
 		}
 	}
 
