@@ -52,9 +52,9 @@ public class SoundManager : MonoBehaviour {
 		if (ambientAudioSource.isPlaying) {
 
 		}
-		if (LevelManager.instance.currentScene != "Main Menu") {
+		//if (LevelManager.instance.currentScene != "Main Menu") {
 			PlayRandomAmbient();
-		}
+		//}
 
 		if(music.Length > 0)
 			MusicSelect();
@@ -91,6 +91,10 @@ public class SoundManager : MonoBehaviour {
 			audioSource.Stop();
 		}
 	}
+	private void playRandomMusic() {
+		int clip = Random.Range(1, music.Length);
+		MusicAudioSource.clip = music[clip];
+	}
 
 	public void MusicSelect()
 	{
@@ -102,10 +106,13 @@ public class SoundManager : MonoBehaviour {
 			case "Options":
 				MusicAudioSource.clip = music[0];
 				break;
+			case "Lose Level":
+				MusicAudioSource.clip = music[0];
+				break;
 			case "Test Level":
 			case "MikeTest":
 			case "Level 1":
-				MusicAudioSource.clip = music[1];
+				playRandomMusic();
 				break;
 
 			case "Level 2":

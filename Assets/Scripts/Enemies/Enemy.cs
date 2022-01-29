@@ -73,7 +73,6 @@ public class Enemy : MonoBehaviour
 
 	private void OnParticleCollision(GameObject particle)
 	{
-		print("hit");
 		Projectile particleParent = particle.GetComponentInParent<Projectile>();
 		if (particleParent.SkillElementType == skillElementTypeToDestroy) {
 			reduceHealth(particleParent.GetDamage());
