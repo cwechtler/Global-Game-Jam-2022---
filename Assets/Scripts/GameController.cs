@@ -13,11 +13,13 @@ public class GameController : MonoBehaviour
 	public int EnemiesKilled { get; set; }
 	public int ActiveSkillIndex { get; set; }
 
+
 	private int enemiesKilled;
 	private GameObject fadePanel;
 	private Vector3 spawnPointLocation;
 	private Animator animator;
 	private bool continueGame = false;
+	private int shadow, air, fire, water;
 
 	private void Awake()
 	{
@@ -49,6 +51,7 @@ public class GameController : MonoBehaviour
 		AstarPath.active.Scan();
 	}
 
+
 	private void FindSceneObjects() {
 		playerGO = GameObject.FindGameObjectWithTag("Player");
 		fadePanel = GameObject.FindGameObjectWithTag("Fade Panel");
@@ -57,19 +60,28 @@ public class GameController : MonoBehaviour
 		}
 	}
 
+	public void AddEnemyType(skillElementType skillElementType) {
+		switch (skillElementType) {
+			case skillElementType.Fire:
+				fire++;
+				break;
+			case skillElementType.Water:
+				water++;
+				break;
+			case skillElementType.Lightning:
+				shadow++;
+				break;
+			case skillElementType.Suction:
+				air++;
+				break;
+			default:
+				break;
+		}
+	}
+
 	public void StartGame()
 	{
 		StartCoroutine(LateStart(.1f));
-		//PlayerPrefsManager.DeletePlayerPrefsPlayerInfo();
-	}
-
-	public void Continue()
-	{
-		continueGame = true;
-
-		spawnPointLocation = new Vector3(PlayerPrefsManager.GetPlayerSpawnpointX(), PlayerPrefsManager.GetPlayerSpawnpointY(), 0);
-
-		LevelManager.instance.LoadLevel(3, .9f);
 	}
 
 	public void PauseGame()
@@ -87,12 +99,6 @@ public class GameController : MonoBehaviour
 
 	public void CloseOverlayOptions() {
 		isPaused = false;
-	}
-
-
-	public void SavePlayerInfo() {
-		PlayerPrefsManager.SetPlayerSpawnpointX(playerGO.transform.position.x);
-		PlayerPrefsManager.SetPlayerSpawnpointY(playerGO.transform.position.y);
 	}
 
 	public void LoadSceneObjects() {
