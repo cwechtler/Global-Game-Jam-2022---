@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
 
 	private bool moveHorizontaly;
 	private bool moveVertically;
+	private bool isDead = false;
 
 	private GameObject activeSkill;
 	private int activeSkillIndex;
@@ -55,21 +56,23 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		float inputY = Input.GetAxis("Vertical");
-		float inputX = Input.GetAxis("Horizontal");
+		if (isDead) {
+			float inputY = Input.GetAxis("Vertical");
+			float inputX = Input.GetAxis("Horizontal");
 
-		float fireY = Input.GetAxis("ArrowsVertical");
-		float fireX = Input.GetAxis("ArrowsHorizontal");
+			float fireY = Input.GetAxis("ArrowsVertical");
+			float fireX = Input.GetAxis("ArrowsHorizontal");
 
-		myRigidbody2D.velocity = new Vector2(speed.x * inputX, speed.y * inputY);
-		moveHorizontaly = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
-		moveVertically = Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon;
+			myRigidbody2D.velocity = new Vector2(speed.x * inputX, speed.y * inputY);
+			moveHorizontaly = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
+			moveVertically = Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon;
 
-		SetAnimations();
-		FlipDirection();
+			SetAnimations();
+			FlipDirection();
 
-		SelectSkill();
-		Fire(fireX, fireY);
+			SelectSkill();
+			Fire(fireX, fireY);
+		}
 	}
 
 	private void SetAnimations()
@@ -211,6 +214,7 @@ public class PlayerController : MonoBehaviour
 	private IEnumerator PlayerDeath()
 	{
 		print("Player Died Do something");
+		isDead = true;
 		foreach (var animator in animators) {
 			animator.SetBool("IsDead", true);
 		}

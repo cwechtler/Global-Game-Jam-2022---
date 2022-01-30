@@ -8,4 +8,9 @@ public class ButtonDirector : MonoBehaviour
 	{
 		LevelManager.instance.LoadLevel(name);
 	}
+
+	public void StartGame()
+	{
+		LevelManager.instance.LoadLevel("MikeTest", true);
+	}
 }
