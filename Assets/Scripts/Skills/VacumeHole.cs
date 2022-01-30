@@ -28,6 +28,7 @@ public class VacumeHole : Projectile
 			skillElementType type = collision.GetComponent<Enemy>().SkillElementTypeToDestroy;
 			if (skillElementType == type) {
 				//enemies.Add(collision.gameObject);
+				collision.GetComponent<Rigidbody2D>().isKinematic = true;
 				collision.GetComponent<AIDestinationSetter>().target = transform;
 				collision.GetComponent<AIPath>().maxSpeed = 6f;
 			}		
