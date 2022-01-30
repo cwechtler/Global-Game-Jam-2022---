@@ -45,8 +45,11 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void LoadLevel (string name){
+	public void LoadLevel (string name, bool restart = false){
 		Debug.Log("Level load requested for: " + name);
+		if (restart) {
+			GameController.instance.resetGame();
+		}
 		StartCoroutine(LoadLevel(name, .9f));
 	}
 

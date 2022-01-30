@@ -18,7 +18,7 @@ public class GameController : MonoBehaviour
 	public int Fire { get => fire; }
 	public int Water { get => water; }
 
-	private int enemiesKilled;
+	//private int enemiesKilled;
 	private GameObject fadePanel;
 	private Vector3 spawnPointLocation;
 	private Animator animator;
@@ -81,6 +81,13 @@ public class GameController : MonoBehaviour
 			default:
 				break;
 		}
+	}
+	public void resetGame() {
+		EnemiesKilled = 0;
+		shadow = 0;
+		air = 0;
+		fire = 0;
+		water = 0;
 	}
 
 	public void FadePanel()

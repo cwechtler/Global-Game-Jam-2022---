@@ -15,4 +15,14 @@ public class LoseCanvas : MonoBehaviour
 		waterText.text = GameController.instance.Water.ToString();
 		total.text = GameController.instance.EnemiesKilled.ToString();
 	}
+
+	public void CallLoadLevel(string name)
+	{
+		LevelManager.instance.LoadLevel(name);
+	}
+
+	public void RestartGame()
+	{
+		LevelManager.instance.LoadLevel("MikeTest", true);
+	}
 }
