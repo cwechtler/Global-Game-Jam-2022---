@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
 	private AIDestinationSetter destinationSetter;
 	private GameObject player;
 	private float damageTimer;
+	private bool isDead;
 
 	void Start()
 	{
@@ -46,7 +47,8 @@ public class Enemy : MonoBehaviour
 
 	public void reduceHealth(float damage) {
 		health -= damage;
-		if (health <= 0) {
+		if (health <= 0 && !isDead) {
+			isDead = true;
 			Destroy(gameObject);
 			SoundManager.instance.EnemyDeathSound(deathClip);
 			GameController.instance.EnemiesKilled++;
