@@ -10700,10 +10700,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Firebolt 2
       objectReference: {fileID: 0}
-    - target: {fileID: 6665855531074833030, guid: ccfc44bf82e4bf748b5819b40ee6b46a, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6665855531075071824, guid: ccfc44bf82e4bf748b5819b40ee6b46a, type: 3}
       propertyPath: m_RootOrder
       value: 1
