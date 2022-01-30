@@ -334,16 +334,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68be97854e0ee3d4996a93d97c740e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeInTime: 0.05
+  fadeInTime: 0.1
   audioMixer: {fileID: 24100000, guid: d8648b42f809a6048ac85b0947055905, type: 2}
   MusicAudioSource: {fileID: 5739616327053476989}
   SFXAudioSource: {fileID: 5739616327053476986}
   ambientAudioSource: {fileID: 5739616327053476987}
   music:
   - {fileID: 8300000, guid: c16e61dac102f84458b0cd2b75a85e69, type: 3}
+  - {fileID: 8300000, guid: 89c05d267b88a954d9220a37523491c8, type: 3}
+  - {fileID: 8300000, guid: 804ae9a5f46c7ec4796ab92738998897, type: 3}
+  - {fileID: 8300000, guid: ad8b4ae51fc7eff4396bf125d1f6b316, type: 3}
   - {fileID: 8300000, guid: 83bf78c9b79bb7044bdc807b79b0c42a, type: 3}
+  - {fileID: 8300000, guid: 55e4612ddb128d94cbdfd68b6538960c, type: 3}
+  - {fileID: 8300000, guid: 1db20c63697fde94d95428459e6f2f25, type: 3}
   ambientClips:
   - {fileID: 8300000, guid: 50df625c9878f2741b43dbbdf39ad8f1, type: 3}
   movementClips: []
-  shotClip: {fileID: 0}
+  hurtClip: {fileID: 8300000, guid: 47e58d10b20ba1f49802bc10f72f8377, type: 3}
+  deathClip: {fileID: 8300000, guid: 7e542139f19d18b4593b8ac8c1a28689, type: 3}
   buttonClick: {fileID: 8300000, guid: 65fdffbddac7d224986b45620065f7b6, type: 3}

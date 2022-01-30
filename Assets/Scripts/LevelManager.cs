@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour {
 				LoadLevel("Main Menu");
 			}
 			else {
-				LoadLevel("Test Level");
+				LoadLevel("MikeTest");
 			}
 		}
 
@@ -45,14 +45,16 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void StartNewGame()
-	{
-		GameController.instance.StartGame();
-		StartCoroutine(LoadScene(3, .9f));
-	}
-
 	public void LoadLevel (string name){
 		Debug.Log("Level load requested for: " + name);
+		StartCoroutine(LoadLevel(name, .9f));
+	}
+
+	public IEnumerator LoadLevel(string name, float waitTime)
+	{
+		GameController.instance.FadePanel();
+		yield return new WaitForSeconds(waitTime);
+		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
 		SceneManager.LoadScene(name);
 	}
 
@@ -61,12 +63,24 @@ public class LevelManager : MonoBehaviour {
 	}
 
 	public void LoadLevelAdditive(string name) {
+		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
 		SceneManager.LoadScene(name, LoadSceneMode.Additive);
 	}
 	
 	public void LoadNextLevel() {
 		StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1, .9f));
 		currentScene = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1).name;
+	}
+
+	private IEnumerator LoadScene(string name, float waitTime)
+	{
+		GameController.instance.FadePanel();
+		Debug.Log("start Coroutine");
+		yield return new WaitForSeconds(waitTime);
+		AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(name);
+		yield return new WaitUntil(() => asyncOperation.isDone);
+		print("Scene " + currentScene + " Loaded");
+		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
 	}
 
 	private IEnumerator LoadScene(int sceneToLoad, float waitTime)
@@ -106,5 +120,34 @@ public class LevelManager : MonoBehaviour {
 		#else
 			Application.Quit();
 		#endif
+	}
+
+	private int ReferanceIndex(string scene)
+	{
+		int randomIndex = Random.Range(2, SoundManager.instance.MusicArrayLength);
+		int clipIndex;
+		switch (scene) {
+			case "Main Menu":
+				clipIndex = 0;
+				break;
+			case "Options":
+				clipIndex = 0;
+				break;
+			case "Lose Level":
+				clipIndex = 1;
+				break;
+			case "Test Level":
+			case "MikeTest":
+			case "Level 1":
+				clipIndex = randomIndex;
+				break;
+			case "Level 2":
+				clipIndex = randomIndex;
+				break;
+			default:
+				clipIndex = 0;
+				break;
+		}
+		return clipIndex;
 	}
 }

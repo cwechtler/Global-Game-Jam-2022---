@@ -26,12 +26,12 @@ public class WaterJet : Projectile
 
 	void Update()
 	{
-		float fireY = Input.GetAxis("FireVertical");
-		float fireX = Input.GetAxis("FireHorizontal");
+		float fireY = Input.GetAxis("ArrowsVertical");
+		float fireX = Input.GetAxis("ArrowsHorizontal");
 
 		transform.position = player.transform.position;
 		if (fireX != 0 || fireY != 0) {
-			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-fireX, fireY) * 180 / Mathf.PI);
+			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(fireX, -fireY) * 180 / Mathf.PI);
 		}
 		if (!clear) {
 			if (audioVolume <= maxAudioVolume) {

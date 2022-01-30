@@ -6,15 +6,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 	[SerializeField] private skillElementType skillElementTypeToDestroy;
+	[SerializeField] private AudioClip deathClip;
 	[SerializeField] private float health = 1f;
 	[SerializeField] private int damage = 10;
 
 	public skillElementType SkillElementTypeToDestroy { get { return skillElementTypeToDestroy; } }
-	public int Damage { get => damage;}
 
 	private AIPath aipath;
 	private AIDestinationSetter destinationSetter;
 	private GameObject player;
+	private float damageTimer;
 
 	void Start()
 	{
@@ -32,14 +33,33 @@ public class Enemy : MonoBehaviour
 		else {
 			FlipDirection();
 		}
+
+		if (damageTimer > 0) {
+			damageTimer -= Time.deltaTime;
+		}
 	}
 
 	public void reduceHealth(float damage) {
 		health -= damage;
 		if (health <= 0) {
 			Destroy(gameObject);
+			SoundManager.instance.EnemyDeathSound(deathClip);
 			GameController.instance.EnemiesKilled++;
 			GameController.instance.AddEnemyType(skillElementTypeToDestroy);
+		}
+	}
+
+	private void DamagePlayer() {
+		damageTimer = 1;
+		player.GetComponent<PlayerController>().ReduceHealth(damage);
+	}
+
+	private void OnCollisionStay2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("Player")) {
+			if (damageTimer <= 0) {
+				DamagePlayer();
+			}
 		}
 	}
 
@@ -55,7 +75,6 @@ public class Enemy : MonoBehaviour
 
 	private void OnParticleCollision(GameObject particle)
 	{
-		print("hit");
 		Projectile particleParent = particle.GetComponentInParent<Projectile>();
 		if (particleParent.SkillElementType == skillElementTypeToDestroy) {
 			reduceHealth(particleParent.GetDamage());
