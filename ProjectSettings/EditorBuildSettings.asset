@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/MikeTest.unity
     guid: d2b8619b24a2651478be5a27e8179a3b
   - enabled: 1
-    path: Assets/Scenes/Level 2.unity
-    guid: 5490b134539968d4aaa27c3f1a69e1cb
-  - enabled: 1
     path: Assets/Scenes/Lose Level.unity
     guid: 548ba720bceb7e74c9b59ffcd4fc2878
   m_configObjects: {}
