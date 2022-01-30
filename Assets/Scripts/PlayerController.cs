@@ -206,7 +206,7 @@ public class PlayerController : MonoBehaviour
 		health -= damage;
 		canvasController.ReduceHealthBar(health);
 
-		if (health <= 0) {
+		if (health <= 0 && !isDead) {
 			StartCoroutine(PlayerDeath());
 		}
 	}

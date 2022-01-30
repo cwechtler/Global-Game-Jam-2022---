@@ -9622,7 +9622,7 @@ GameObject:
   - component: {fileID: -7865295173358264417}
   m_Layer: 0
   m_Name: VacumeHole URP
-  m_TagString: Projectile
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14595,7 +14595,7 @@ GameObject:
   - component: {fileID: 8900583749071521076}
   m_Layer: 0
   m_Name: Suction
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

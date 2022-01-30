@@ -21,6 +21,7 @@ public class CanvasController : MonoBehaviour
 
 	private void Start()
 	{
+		playerHealthBar.value = 100;
 		//ScoreText.color = defaultTextColor;
 		UpdateTextColor();
 		//animator = fadePanel.GetComponent<Animator>();
