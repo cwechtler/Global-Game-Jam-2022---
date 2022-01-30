@@ -67,10 +67,10 @@ public class GameController : MonoBehaviour
 	public void AddEnemyType(skillElementType skillElementType) {
 		switch (skillElementType) {
 			case skillElementType.Fire:
-				fire++;
+				water++;
 				break;
 			case skillElementType.Water:
-				water++;
+				fire++;
 				break;
 			case skillElementType.Lightning:
 				shadow++;
