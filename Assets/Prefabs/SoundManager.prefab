@@ -350,6 +350,6 @@ MonoBehaviour:
   ambientClips:
   - {fileID: 8300000, guid: 50df625c9878f2741b43dbbdf39ad8f1, type: 3}
   movementClips: []
-  hurtClip: {fileID: 8300000, guid: 47e58d10b20ba1f49802bc10f72f8377, type: 3}
+  hurtClip: {fileID: 8300000, guid: a23447d7e6114da48b584c83c72ae573, type: 3}
   deathClip: {fileID: 8300000, guid: 7e542139f19d18b4593b8ac8c1a28689, type: 3}
   buttonClick: {fileID: 8300000, guid: 65fdffbddac7d224986b45620065f7b6, type: 3}
