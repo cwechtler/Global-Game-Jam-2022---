@@ -37,6 +37,11 @@ public class Enemy : MonoBehaviour
 		if (damageTimer > 0) {
 			damageTimer -= Time.deltaTime;
 		}
+
+		if (destinationSetter.target == null) {
+			destinationSetter.target = player.transform;
+			aipath.maxSpeed = 4f;
+		}
 	}
 
 	public void reduceHealth(float damage) {

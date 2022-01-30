@@ -215,6 +215,8 @@ public class PlayerController : MonoBehaviour
 	{
 		print("Player Died Do something");
 		isDead = true;
+		myRigidbody2D.isKinematic = true;
+		myRigidbody2D.velocity = new Vector3(0, 0, 0);
 		foreach (var animator in animators) {
 			animator.SetBool("IsDead", true);
 		}

@@ -13,4 +13,9 @@ public class ButtonDirector : MonoBehaviour
 	{
 		LevelManager.instance.LoadLevel("MikeTest", true);
 	}
+
+	public void Quit()
+	{
+		LevelManager.instance.QuitRequest();
+	}
 }
