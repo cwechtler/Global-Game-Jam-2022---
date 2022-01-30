@@ -56,7 +56,7 @@ public class PlayerController : MonoBehaviour
 
 	void Update()
 	{
-		if (isDead) {
+		if (!isDead) {
 			float inputY = Input.GetAxis("Vertical");
 			float inputX = Input.GetAxis("Horizontal");
 
