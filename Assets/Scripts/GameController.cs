@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -38,7 +39,7 @@ public class GameController : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetButtonDown("Submit")) {
+		if (Input.GetButtonDown("Pause")) {
 			if (!GameController.instance.isPaused) {
 				GameController.instance.PauseGame();
 			}
@@ -48,11 +49,11 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	IEnumerator LateStart(float waitTime)
-	{
-		yield return new WaitForSeconds(waitTime);
-		AstarPath.active.Scan();
-	}
+	//IEnumerator LateStart(float waitTime)
+	//{
+	//	yield return new WaitForSeconds(waitTime);
+	//	AstarPath.active.Scan();
+	//}
 
 
 	private void FindSceneObjects() {
@@ -82,9 +83,10 @@ public class GameController : MonoBehaviour
 		}
 	}
 
-	public void StartGame()
-	{
-		//StartCoroutine(LateStart(.1f));
+	public void FadePanel()
+	{	
+		fadePanel = GameObject.FindGameObjectWithTag("Fade Panel");
+		fadePanel.GetComponent<Animator>().SetBool("FadeIn", true);
 	}
 
 	public void PauseGame()
@@ -121,7 +123,6 @@ public class GameController : MonoBehaviour
 		playerGO.GetComponent<Rigidbody2D>().isKinematic = false;
 		yield return new WaitForSeconds(1);
 	}
-
 
 	public IEnumerator FadeCanvasGroup_TimeScale_0(CanvasGroup canvasGroup, bool isPanelOpen, float fadeTime)
 	{

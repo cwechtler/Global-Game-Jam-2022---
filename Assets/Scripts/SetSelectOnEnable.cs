@@ -16,7 +16,6 @@ public class SetSelectOnEnable : MonoBehaviour
 
 	private void OnEnable()
 	{
-		//EventSystem.current.SetSelectedGameObject(this.gameObject);
 		button = GetComponent<Button>();
 		button.Select();
 		button.OnSelect(null);

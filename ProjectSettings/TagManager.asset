@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Projectile
+  - Fade Panel
   layers:
   - Default
   - TransparentFX

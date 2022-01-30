@@ -269,6 +269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillElementTypeToDestroy: 0
+  deathClip: {fileID: 8300000, guid: 220e759349c188e4182f71fad7788b03, type: 3}
   health: 1
   damage: 10
 --- !u!114 &7238756275332855265

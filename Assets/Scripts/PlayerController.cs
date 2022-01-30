@@ -58,8 +58,8 @@ public class PlayerController : MonoBehaviour
 		float inputY = Input.GetAxis("Vertical");
 		float inputX = Input.GetAxis("Horizontal");
 
-		float fireY = Input.GetAxis("FireVertical");
-		float fireX = Input.GetAxis("FireHorizontal");
+		float fireY = Input.GetAxis("ArrowsVertical");
+		float fireX = Input.GetAxis("ArrowsHorizontal");
 
 		myRigidbody2D.velocity = new Vector2(speed.x * inputX, speed.y * inputY);
 		moveHorizontaly = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
@@ -115,10 +115,13 @@ public class PlayerController : MonoBehaviour
 
 	private void Fire(float fireX, float fireY) {
 		if ((fireX != 0 || fireY != 0)) {
-			skillSpawner.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-fireY, -fireX) * 180 / Mathf.PI);
+			skillSpawner.eulerAngles = new Vector3(0, 0, Mathf.Atan2(fireY, fireX) * 180 / Mathf.PI);
 			if (skillWasCast[activeSkillIndex] == false) {
 				skillWasCast[activeSkillIndex] = true;
 				string skillType = activeSkill.GetComponent<Projectile>().SkillElementType.ToString();
+				foreach (var animator in animators) {
+					animator.SetTrigger("Attack");
+				}
 				switch (skillType) {
 					case "Water":
 					case "Lightning":
@@ -160,7 +163,7 @@ public class PlayerController : MonoBehaviour
 	{
 		GameObject projectile = Instantiate(activeSkill, transform.position, Quaternion.identity) as GameObject;
 		Rigidbody2D projectileRidgidbody2D = projectile.GetComponent<Rigidbody2D>();
-		projectileRidgidbody2D.velocity = new Vector3(fireX, fireY, 0);
+		projectileRidgidbody2D.velocity = new Vector3(-fireX, -fireY, 0);
 		projectileRidgidbody2D.velocity = (Vector3.Normalize(projectileRidgidbody2D.velocity) * projectileSpeed);
 		yield return new WaitForSeconds(firingRate);
 	}
@@ -196,6 +199,7 @@ public class PlayerController : MonoBehaviour
 
 	public void ReduceHealth(int damage)
 	{
+		SoundManager.instance.PlayHurtClip();
 		health -= damage;
 		canvasController.ReduceHealthBar(health);
 
@@ -207,9 +211,11 @@ public class PlayerController : MonoBehaviour
 	private IEnumerator PlayerDeath()
 	{
 		print("Player Died Do something");
-		// Play animation
-		//play death sound
-		yield return new WaitForSeconds(1f);
+		foreach (var animator in animators) {
+			animator.SetBool("IsDead", true);
+		}
+		SoundManager.instance.PlayDeathClip();
+		yield return new WaitForSeconds(2f);
 		LevelManager.instance.LoadLevel("Lose Level");
 	}
 }

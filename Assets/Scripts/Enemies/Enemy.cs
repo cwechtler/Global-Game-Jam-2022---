@@ -6,6 +6,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
 	[SerializeField] private skillElementType skillElementTypeToDestroy;
+	[SerializeField] private AudioClip deathClip;
 	[SerializeField] private float health = 1f;
 	[SerializeField] private int damage = 10;
 
@@ -42,6 +43,7 @@ public class Enemy : MonoBehaviour
 		health -= damage;
 		if (health <= 0) {
 			Destroy(gameObject);
+			SoundManager.instance.EnemyDeathSound(deathClip);
 			GameController.instance.EnemiesKilled++;
 			GameController.instance.AddEnemyType(skillElementTypeToDestroy);
 		}
