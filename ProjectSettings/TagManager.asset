@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Projectile
   - Fade Panel
+  - Obsticle
   layers:
   - Default
   - TransparentFX

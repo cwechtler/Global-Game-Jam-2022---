@@ -43,32 +43,34 @@ public class FireBolt : Projectile
 
 	protected override void OnTriggerEnter2D(Collider2D collision)
 	{
-		this.GetComponent<Rigidbody2D>().velocity = new Vector3(0,0,0);
-		var colls = Physics2D.OverlapCircleAll(transform.position, areaEffect);
-		foreach (var col in colls) {
-			if (col.CompareTag("Enemy")) {
-				Enemy enemy = col.GetComponent<Enemy>();
+		if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Obsticle")) {
+			this.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
+			var colls = Physics2D.OverlapCircleAll(transform.position, areaEffect);
+			foreach (var col in colls) {
+				if (col.CompareTag("Enemy")) {
+					Enemy enemy = col.GetComponent<Enemy>();
 
-				if (enemy.SkillElementTypeToDestroy == skillElementType) {
-					//GameController.instance.EnemiesKilled ++;
-					Destroy(col.gameObject);
+					if (enemy.SkillElementTypeToDestroy == skillElementType) {
+						//GameController.instance.EnemiesKilled ++;
+						Destroy(col.gameObject);
+					}
 				}
 			}
-		}
 
-		if (ProjectileParticleSystem != null) {
-			Destroy(ProjectileParticleSystem.gameObject);
-		}
+			if (ProjectileParticleSystem != null) {
+				Destroy(ProjectileParticleSystem.gameObject);
+			}
 
-		if (ProjectileExplosionParticleSystem != null) {
-			ProjectileExplosionParticleSystem.Play();
-		}
+			if (ProjectileExplosionParticleSystem != null) {
+				ProjectileExplosionParticleSystem.Play();
+			}
 
-		if (ProjectileCollisionSound != null) {
-			ProjectileCollisionSound.Play();
-		}
+			if (ProjectileCollisionSound != null) {
+				ProjectileCollisionSound.Play();
+			}
 
-		Destroy(gameObject, ProjectileCollisionSound.clip.length);
+			Destroy(gameObject, ProjectileCollisionSound.clip.length);
+		}
 	}
 
 	private IEnumerator DestroySkill(float skillDuration)
