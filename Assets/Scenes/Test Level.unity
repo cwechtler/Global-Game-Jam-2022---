@@ -9470,14 +9470,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Water Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7804075384376232420, guid: 173db9852ca49d04fa71415367d29817, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7804075384376232421, guid: 173db9852ca49d04fa71415367d29817, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7804075384376232422, guid: 173db9852ca49d04fa71415367d29817, type: 3}
       propertyPath: m_RootOrder
       value: 7
