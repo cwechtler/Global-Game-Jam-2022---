@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 		if (destinationSetter.target == null) {
 			destinationSetter.target = player.transform;
 			aipath.maxSpeed = 4f;
-			GetComponent<Rigidbody2D>().isKinematic = false;
+			gameObject.layer = 9;
 		}
 	}
 
