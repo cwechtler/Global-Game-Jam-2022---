@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour
 	{
 		if (collision.CompareTag("Projectile")) {
 			Projectile projectile = collision.GetComponentInParent<Projectile>();
-			if (projectile.SkillElementType == skillElementTypeToDestroy) {
+			if (projectile.SkillElementType == skillElementTypeToDestroy && projectile.SkillElementType != skillElementType.Fire) {
 				reduceHealth(projectile.GetDamage());
 			}
 		}		

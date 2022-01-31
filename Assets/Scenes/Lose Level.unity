@@ -394,7 +394,6 @@ GameObject:
   - component: {fileID: 495317316}
   - component: {fileID: 495317321}
   - component: {fileID: 495317319}
-  - component: {fileID: 495317318}
   - component: {fileID: 495317317}
   m_Layer: 5
   m_Name: Restart Button
@@ -417,7 +416,7 @@ RectTransform:
   - {fileID: 1508764431}
   - {fileID: 634670263}
   m_Father: {fileID: 1189764146}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -434,18 +433,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 813e9cc23b2cf43469eacb68859b523b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &495317318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 495317315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb8d72ef35197e40bdaf73059a61ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &495317319
@@ -472,7 +459,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0, g: 0.5411765, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -488,7 +475,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 1508764432}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1238,6 +1225,7 @@ GameObject:
   - component: {fileID: 803426808}
   - component: {fileID: 803426813}
   - component: {fileID: 803426811}
+  - component: {fileID: 803426810}
   - component: {fileID: 803426809}
   m_Layer: 5
   m_Name: Main Menu
@@ -1260,7 +1248,7 @@ RectTransform:
   - {fileID: 873540430}
   - {fileID: 1914016599}
   m_Father: {fileID: 1189764146}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
@@ -1277,6 +1265,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 813e9cc23b2cf43469eacb68859b523b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &803426810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 803426807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb8d72ef35197e40bdaf73059a61ad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &803426811
@@ -1303,7 +1303,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0, g: 0.5411765, b: 1, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1319,7 +1319,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 0}
+  m_TargetGraphic: {fileID: 873540431}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1945,8 +1945,8 @@ RectTransform:
   m_Children:
   - {fileID: 1752615564}
   - {fileID: 1851685864}
-  - {fileID: 495317316}
   - {fileID: 803426808}
+  - {fileID: 495317316}
   - {fileID: 223803296}
   m_Father: {fileID: 0}
   m_RootOrder: 4
