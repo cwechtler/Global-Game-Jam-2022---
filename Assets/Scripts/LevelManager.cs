@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +8,8 @@ public class LevelManager : MonoBehaviour {
 	public static LevelManager instance = null;
 
 	#if UNITY_WEBGL
-		[SerializeField] private string webglQuitURL = "about:blank";
+	[DllImport("__Internal")] private static extern void closewindow();
+	[SerializeField] private string webglQuitURL = "about:blank";
 	#endif
 
 	public string currentScene { get; private set; }
@@ -119,7 +121,10 @@ public class LevelManager : MonoBehaviour {
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 		#elif UNITY_WEBGL
+			Application.Quit();
 			Application.OpenURL(webglQuitURL);
+			closewindow();
+		
 		#else
 			Application.Quit();
 		#endif

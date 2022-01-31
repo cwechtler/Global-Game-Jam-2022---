@@ -18,7 +18,6 @@ public class GameController : MonoBehaviour
 	public int Fire { get => fire; }
 	public int Water { get => water; }
 
-	//private int enemiesKilled;
 	private GameObject fadePanel;
 	private Vector3 spawnPointLocation;
 	private Animator animator;
@@ -34,7 +33,6 @@ public class GameController : MonoBehaviour
 			instance = this;
 			DontDestroyOnLoad(gameObject);
 		}
-		//StartCoroutine(LateStart(.1f));
 	}
 
 	private void Update()
@@ -48,13 +46,6 @@ public class GameController : MonoBehaviour
 			}
 		}
 	}
-
-	//IEnumerator LateStart(float waitTime)
-	//{
-	//	yield return new WaitForSeconds(waitTime);
-	//	AstarPath.active.Scan();
-	//}
-
 
 	private void FindSceneObjects() {
 		playerGO = GameObject.FindGameObjectWithTag("Player");

@@ -5,7 +5,6 @@ using System;
 
 public class CanvasController : MonoBehaviour
 {
-	[SerializeField] private GameObject fadePanel;
 	[SerializeField] private GameObject pausePanel;
 	[SerializeField] private Color32 defaultTextColor = new Color32(0, 138, 255, 255);
 	[SerializeField] private Color32 activeTextColor = new Color32(255, 0, 0, 255);
@@ -22,9 +21,7 @@ public class CanvasController : MonoBehaviour
 	private void Start()
 	{
 		playerHealthBar.value = 100;
-		//ScoreText.color = defaultTextColor;
 		UpdateTextColor();
-		//animator = fadePanel.GetComponent<Animator>();
 	}
 
 	private void Update()
