@@ -3358,7 +3358,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'The Realm <size=50%>of<size=100%> Duality
 
-    <size=50%><color=#FCD314>Create
+    <size=50%><color=#FCD314>Created
     by: Craig Wechtler & Mike Thompson'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e36c8d6d8dc0ddf418387c2d59518aca, type: 2}
