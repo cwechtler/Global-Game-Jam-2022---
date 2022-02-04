@@ -8,7 +8,8 @@ public class LevelManager : MonoBehaviour {
 	public static LevelManager instance = null;
 
 	#if UNITY_WEBGL
-	[DllImport("__Internal")] private static extern void closewindow();
+	[SerializeField] private bool setFeaturedGameQuitURL = false;
+	[ConditionalHide("setFeaturedGameQuitURL", true, true)]
 	[SerializeField] private string webglQuitURL = "about:blank";
 	#endif
 
@@ -120,10 +121,16 @@ public class LevelManager : MonoBehaviour {
 
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
+
+
 		#elif UNITY_WEBGL
 			Application.Quit();
-			Application.OpenURL(webglQuitURL);
-			closewindow();
+			if (setFeaturedGameQuitURL) {
+				WebGLPluginJS.SessionRedirect();
+			}
+			else {
+				WebGLPluginJS.Redirect(webglQuitURL);
+			}
 		
 		#else
 			Application.Quit();
