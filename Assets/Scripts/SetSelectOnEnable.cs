@@ -31,9 +31,9 @@ public class SetSelectOnEnable : MonoBehaviour
 				controller = true;
 			}
 		}
-		if (controller) {		
+		//if (controller) {		
 			button.Select();
 			button.OnSelect(null);
-		}
+		//}
 	}
 }
