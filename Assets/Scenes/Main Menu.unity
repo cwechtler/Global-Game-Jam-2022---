@@ -2258,6 +2258,18 @@ PrefabInstance:
       propertyPath: webglQuitURL
       value: https://cwechtler.github.io/Personal-WebSite#Game-Jam
       objectReference: {fileID: 0}
+    - target: {fileID: 3871623961424445353, guid: a4bcf3397e6d29b4fbea5f6438a09087, type: 3}
+      propertyPath: isFeaturedGame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871623961424445353, guid: a4bcf3397e6d29b4fbea5f6438a09087, type: 3}
+      propertyPath: setFeaturedGameURL
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3871623961424445353, guid: a4bcf3397e6d29b4fbea5f6438a09087, type: 3}
+      propertyPath: setFeaturedGameQuitURL
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5593258878902377785, guid: a4bcf3397e6d29b4fbea5f6438a09087, type: 3}
       propertyPath: m_RootOrder
       value: 1

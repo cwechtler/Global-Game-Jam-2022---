@@ -8,6 +8,7 @@ public class LevelManager : MonoBehaviour {
 	public static LevelManager instance = null;
 
 	#if UNITY_WEBGL
+	[Tooltip("For sessionstorage on Craig's webpage featured section. Unchecked to set URL manually")]
 	[SerializeField] private bool setFeaturedGameQuitURL = false;
 	[ConditionalHide("setFeaturedGameQuitURL", true, true)]
 	[SerializeField] private string webglQuitURL = "about:blank";
