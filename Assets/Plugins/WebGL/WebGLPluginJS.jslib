@@ -9,8 +9,13 @@ mergeInto(LibraryManager.library, {
 		window.location.href = Pointer_stringify(url);
 	},
 
-	SessionRedirect: function () {
-		var location = sessionStorage.getItem("Jam-Game");
-		window.location.href = location;
+	SessionRedirect: function (sessionStorageItem) {
+		var location = sessionStorage.getItem(Pointer_stringify(sessionStorageItem));
+
+		if (location != null) {
+			window.location.href = location;
+		} else {
+			window.history.back();
+		}	
 	}
 });

@@ -13,5 +13,5 @@ public class WebGLPluginJS : MonoBehaviour
 	public static extern void Redirect(string url);
 
 	[DllImport("__Internal")]
-	public static extern void SessionRedirect();
+	public static extern void SessionRedirect(string sessionStorageItem);
 }

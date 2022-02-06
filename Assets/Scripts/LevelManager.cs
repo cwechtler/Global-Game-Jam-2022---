@@ -9,8 +9,10 @@ public class LevelManager : MonoBehaviour {
 
 	#if UNITY_WEBGL
 	[Tooltip("For sessionstorage on Craig's webpage featured section. Unchecked to set URL manually")]
-	[SerializeField] private bool setFeaturedGameQuitURL = false;
-	[ConditionalHide("setFeaturedGameQuitURL", true, true)]
+	[SerializeField] private bool setSessionStorageGameQuitURL = false;
+	[ConditionalHide("setSessionStorageGameQuitURL", true, false)]
+	[SerializeField] private string sessionStorageItem;
+	[ConditionalHide("setSessionStorageGameQuitURL", true, true)]
 	[SerializeField] private string webglQuitURL = "about:blank";
 	#endif
 
@@ -122,20 +124,18 @@ public class LevelManager : MonoBehaviour {
 
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
-
-
-		#elif UNITY_WEBGL
+#elif UNITY_WEBGL
 			Application.Quit();
-			if (setFeaturedGameQuitURL) {
-				WebGLPluginJS.SessionRedirect();
+			if (setSessionStorageGameQuitURL) {
+				WebGLPluginJS.SessionRedirect(sessionStorageItem);
 			}
 			else {
 				WebGLPluginJS.Redirect(webglQuitURL);
 			}
 		
-		#else
+#else
 			Application.Quit();
-		#endif
+#endif
 	}
 
 	private int ReferanceIndex(string scene)
