@@ -14,7 +14,6 @@ public class Enemy : MonoBehaviour
 
 	public skillElementType SkillElementTypeToDestroy { get { return skillElementTypeToDestroy; } }
 	
-
 	private AIPath aipath;
 	private AIDestinationSetter destinationSetter;
 	private GameObject player;
@@ -61,7 +60,7 @@ public class Enemy : MonoBehaviour
 			//Drop Experience - MT
 			//Instantiate(expDrop, transform.position, transform.rotation);
 			GameObject drop = Instantiate(expDrop, transform.position, transform.rotation) as GameObject;
-			drop.GetComponent<Experience>().ExperiencePointsWorth = experiencePointValue;
+			drop.GetComponentInChildren<Experience>().ExperiencePointsWorth = experiencePointValue;
 		}
 	}
 

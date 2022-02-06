@@ -7,11 +7,14 @@ public class LevelManager : MonoBehaviour {
 
 	public static LevelManager instance = null;
 
-	#if UNITY_WEBGL
-	[Tooltip("For sessionstorage on Craig's webpage featured section. Unchecked to set URL manually")]
+#if UNITY_WEBGL
+	[Tooltip("For browser session storage. Uncheck to set URL manually")]
 	[SerializeField] private bool setSessionStorageGameQuitURL = false;
+	
 	[ConditionalHide("setSessionStorageGameQuitURL", true, false)]
+	[Tooltip("This is the string value of the url sessionstorage Item you want to get")]
 	[SerializeField] private string sessionStorageItem;
+	[Space]
 	[ConditionalHide("setSessionStorageGameQuitURL", true, true)]
 	[SerializeField] private string webglQuitURL = "about:blank";
 	#endif
@@ -124,7 +127,7 @@ public class LevelManager : MonoBehaviour {
 
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
-#elif UNITY_WEBGL
+		#elif UNITY_WEBGL
 			Application.Quit();
 			if (setSessionStorageGameQuitURL) {
 				WebGLPluginJS.SessionRedirect(sessionStorageItem);
@@ -133,9 +136,9 @@ public class LevelManager : MonoBehaviour {
 				WebGLPluginJS.Redirect(webglQuitURL);
 			}
 		
-#else
+		#else
 			Application.Quit();
-#endif
+		#endif
 	}
 
 	private int ReferanceIndex(string scene)

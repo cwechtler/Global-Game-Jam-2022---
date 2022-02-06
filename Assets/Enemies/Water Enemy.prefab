@@ -272,6 +272,8 @@ MonoBehaviour:
   deathClip: {fileID: 8300000, guid: 16488e4302dd539448cc6cd5ae11f575, type: 3}
   health: 1
   damage: 10
+  expDrop: {fileID: 1587895239563120619, guid: 3b669230faa0e2241bf5ea0ac2603be0, type: 3}
+  experiencePointValue: 10
 --- !u!114 &7238756275332855265
 MonoBehaviour:
   m_ObjectHideFlags: 0

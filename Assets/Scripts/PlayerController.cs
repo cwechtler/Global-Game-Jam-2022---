@@ -32,9 +32,10 @@ public class PlayerController : MonoBehaviour
 	private float[] coolDownTimes;
 	private float[] timerTimes;
 	private bool[] skillWasCast;
+	public int experiencePoints;
 
 	public GameObject LightningEndPoint { get => lightningEndPoint; }
-	public int experiencePoints;
+	public int ExperiencePoints { get => experiencePoints; set => experiencePoints = value; }
 
 	void Start()
 	{
