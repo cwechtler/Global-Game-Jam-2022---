@@ -9,14 +9,18 @@ public class Enemy : MonoBehaviour
 	[SerializeField] private AudioClip deathClip;
 	[SerializeField] private float health = 1f;
 	[SerializeField] private int damage = 10;
+	[SerializeField] private GameObject expDrop;
+	[SerializeField] private int experiencePointValue = 10;
 
 	public skillElementType SkillElementTypeToDestroy { get { return skillElementTypeToDestroy; } }
+	
 
 	private AIPath aipath;
 	private AIDestinationSetter destinationSetter;
 	private GameObject player;
 	private float damageTimer;
 	private bool isDead;
+
 
 	void Start()
 	{
@@ -54,6 +58,10 @@ public class Enemy : MonoBehaviour
 			SoundManager.instance.EnemyDeathSound(deathClip);
 			GameController.instance.EnemiesKilled++;
 			GameController.instance.AddEnemyType(skillElementTypeToDestroy);
+			//Drop Experience - MT
+			//Instantiate(expDrop, transform.position, transform.rotation);
+			GameObject drop = Instantiate(expDrop, transform.position, transform.rotation) as GameObject;
+			drop.GetComponent<Experience>().ExperiencePointsWorth = experiencePointValue;
 		}
 	}
 
