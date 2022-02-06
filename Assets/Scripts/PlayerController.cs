@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 	private bool[] skillWasCast;
 
 	public GameObject LightningEndPoint { get => lightningEndPoint; }
+	public int experiencePoints;
 
 	void Start()
 	{
