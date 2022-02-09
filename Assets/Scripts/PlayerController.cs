@@ -19,6 +19,9 @@ public class PlayerController : MonoBehaviour
 	[SerializeField] private GameObject rigBack;
 	[SerializeField] private CanvasController canvasController;
 
+	public GameObject LightningEndPoint { get => lightningEndPoint; }
+	public int ExperiencePoints { get => experiencePoints; set => experiencePoints = value; }
+
 	private Rigidbody2D myRigidbody2D;
 	private Animator[] animators;
 
@@ -33,9 +36,6 @@ public class PlayerController : MonoBehaviour
 	private float[] timerTimes;
 	private bool[] skillWasCast;
 	public int experiencePoints;
-
-	public GameObject LightningEndPoint { get => lightningEndPoint; }
-	public int ExperiencePoints { get => experiencePoints; set => experiencePoints = value; }
 
 	void Start()
 	{
