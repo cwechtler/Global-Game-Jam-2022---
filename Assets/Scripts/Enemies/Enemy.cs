@@ -60,6 +60,8 @@ public class Enemy : MonoBehaviour
 			//Drop Experience - MT
 			GameObject drop = Instantiate(expDrop, transform.position, transform.rotation) as GameObject;
 			drop.GetComponent<Experience>().ExperiencePointsWorth = experiencePointValue;
+			GameObject DropContainer = GameObject.FindGameObjectWithTag("DropContainer");
+			drop.transform.SetParent(DropContainer.transform);
 		}
 	}
 
