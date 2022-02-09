@@ -58,9 +58,8 @@ public class Enemy : MonoBehaviour
 			GameController.instance.EnemiesKilled++;
 			GameController.instance.AddEnemyType(skillElementTypeToDestroy);
 			//Drop Experience - MT
-			//Instantiate(expDrop, transform.position, transform.rotation);
 			GameObject drop = Instantiate(expDrop, transform.position, transform.rotation) as GameObject;
-			drop.GetComponentInChildren<Experience>().ExperiencePointsWorth = experiencePointValue;
+			drop.GetComponent<Experience>().ExperiencePointsWorth = experiencePointValue;
 		}
 	}
 

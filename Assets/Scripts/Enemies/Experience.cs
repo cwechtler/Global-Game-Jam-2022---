@@ -21,7 +21,7 @@ public class Experience : MonoBehaviour
 		{
 			collected = true;
 			//Kill Coin
-			Destroy(transform.parent.gameObject);
+			Destroy(transform.gameObject);
 			// Give Exp
 			player.ExperiencePoints += ExperiencePointsWorth;
 			print("added by: " + collision.name);

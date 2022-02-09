@@ -273,7 +273,7 @@ MonoBehaviour:
   health: 1
   damage: 10
   expDrop: {fileID: 1587895239563120619, guid: 3b669230faa0e2241bf5ea0ac2603be0, type: 3}
-  experiencePointValue: 100
+  experiencePointValue: 1
 --- !u!114 &1141587356615638116
 MonoBehaviour:
   m_ObjectHideFlags: 0
