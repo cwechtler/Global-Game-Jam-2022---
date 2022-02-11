@@ -175,7 +175,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -444,7 +444,7 @@ MonoBehaviour:
   m_fontSizeMax: 72
   m_fontStyle: 1
   m_HorizontalAlignment: 4
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 4096
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -487,6 +487,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8199712739157037329}
+  - component: {fileID: 6245049910826253431}
   m_Layer: 5
   m_Name: Player Score
   m_TagString: Untagged
@@ -516,3 +517,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 104.974}
   m_SizeDelta: {x: 774, y: 50.0521}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6245049910826253431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9095038561662844143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5a2d98d64e2b944a3c1b70c1b69f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRank: {fileID: 647468502364103387}
+  playerScore: {fileID: 3872630197910790550}
+  playerName: {fileID: 5945976368547596245}
+  Image: {fileID: 702108352443963098}

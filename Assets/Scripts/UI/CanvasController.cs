@@ -70,14 +70,13 @@ public class CanvasController : MonoBehaviour
 
 	public void MainMenu()
 	{
-
-		LevelManager.instance.LoadLevel("Main Menu");
+		LevelManager.instance.LoadLevel(LevelManager.MainMenuString);
 	}
 
 	public void Options()
 	{
 		animator.SetBool("FadeOut", true);
-		LevelManager.instance.LoadLevel(1, .9f);
+		LevelManager.instance.LoadLevel(LevelManager.OptionsString, .9f);
 	}
 
 	public void QuitGame()

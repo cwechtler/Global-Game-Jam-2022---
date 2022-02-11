@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Newtonsoft.Json;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,7 +19,11 @@ public class GameController : MonoBehaviour
 	public int Air { get => air; }
 	public int Fire { get => fire; }
 	public int Water { get => water; }
+	public string PlayerName { get; set; }
+	public List<Tuple<string, int>> HighScores { get => highScores; set => highScores = value; }
 
+
+	private List<Tuple<string, int>> highScores = new List<Tuple<string, int>>();
 	private GameObject fadePanel;
 	private Vector3 spawnPointLocation;
 	private Animator animator;
@@ -32,6 +38,21 @@ public class GameController : MonoBehaviour
 		else {
 			instance = this;
 			DontDestroyOnLoad(gameObject);
+		}
+		//PlayerPrefsManager.DeleteAllPlayerPrefs();
+
+		if (PlayerPrefsManager.DoesKeyExist(PlayerPrefsManager.HighScoresKey)) {
+			string highScoresString = PlayerPrefsManager.GetHighScores();
+			highScores = JsonConvert.DeserializeObject<List<Tuple<string, int>>>(highScoresString);
+
+			highScores.Sort((x, y) => y.Item2.CompareTo(x.Item2));
+		}
+
+		if (PlayerPrefsManager.DoesKeyExist(PlayerPrefsManager.PlayerNameKey)) {
+			PlayerName = PlayerPrefsManager.GetPlayerName();
+		}
+		else {
+			PlayerName = System.Environment.MachineName;
 		}
 	}
 
@@ -139,5 +160,15 @@ public class GameController : MonoBehaviour
 			}
 		}
 		yield return null;
+	}
+
+	public bool SaveHighScore(string name) {
+		highScores.Add(Tuple.Create(name, EnemiesKilled));
+		highScores.Sort((x, y) => y.Item2.CompareTo(x.Item2));
+
+		string json = JsonConvert.SerializeObject(highScores, Formatting.Indented);
+		PlayerPrefsManager.SetHighScores(json);
+
+		return true;
 	}
 }

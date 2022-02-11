@@ -7,6 +7,11 @@ public class LevelManager : MonoBehaviour {
 
 	public static LevelManager instance = null;
 
+	public const string MainMenuString = "Main Menu with Leaderboard";
+	public const string OptionsString = "Options";
+	public const string Level1String = "MikeTest";
+	public const string LoseLevelString = "Lose Level";
+
 #if UNITY_WEBGL
 	[Tooltip("For browser session storage. Uncheck to set URL manually")]
 	[SerializeField] private bool setSessionStorageGameQuitURL = false;
@@ -40,14 +45,14 @@ public class LevelManager : MonoBehaviour {
 			currentScene = SceneManager.GetActiveScene().name;
 		}
 
-		if (Input.GetButtonDown("Enter")) {
-			if (currentScene != "Main Menu") {
-				LoadLevel("Main Menu");
-			}
-			else {
-				LoadLevel("MikeTest");
-			}
-		}
+		//if (Input.GetButtonDown("Enter")) {
+		//	if (currentScene != MainMenuString) {
+		//		LoadLevel(MainMenuString);
+		//	}
+		//	else {
+		//		LoadLevel(Level1String);
+		//	}
+		//}
 
 		if (Input.GetButtonDown("Cancel")) {
 			QuitRequest();
@@ -146,17 +151,17 @@ public class LevelManager : MonoBehaviour {
 		int randomIndex = Random.Range(2, SoundManager.instance.MusicArrayLength);
 		int clipIndex;
 		switch (scene) {
-			case "Main Menu":
+			case MainMenuString:
 				clipIndex = 0;
 				break;
-			case "Options":
+			case OptionsString:
 				clipIndex = 0;
 				break;
-			case "Lose Level":
+			case LoseLevelString:
 				clipIndex = 1;
 				break;
 			case "Test Level":
-			case "MikeTest":
+			case Level1String:
 			case "Level 1":
 				clipIndex = randomIndex;
 				break;

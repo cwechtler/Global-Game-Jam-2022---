@@ -11,7 +11,7 @@ public class ButtonDirector : MonoBehaviour
 
 	public void StartGame()
 	{
-		LevelManager.instance.LoadLevel("MikeTest", true);
+		LevelManager.instance.LoadLevel(LevelManager.Level1String, true);
 	}
 
 	public void Quit()

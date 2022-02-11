@@ -11,12 +11,12 @@ public class PlayerController : MonoBehaviour
 	[Space]
 	[Tooltip("Skill Prefabs")]
 	[SerializeField] private GameObject[] skills;
-	[SerializeField] private Transform skillSpawner;
-	[SerializeField] private Transform skillSpawnPoint;
+	[SerializeField] private Transform skillSpawner, skillSpawnPoint;
 	[SerializeField] private GameObject lightningEndPoint;
+	[Space]
 	[SerializeField] private Transform notch;
-	[SerializeField] private GameObject rigFront;
-	[SerializeField] private GameObject rigBack;
+	[SerializeField] private GameObject rigFront, rigBack;
+	[Space]
 	[SerializeField] private CanvasController canvasController;
 
 	public GameObject LightningEndPoint { get => lightningEndPoint; }
@@ -25,8 +25,7 @@ public class PlayerController : MonoBehaviour
 	private Rigidbody2D myRigidbody2D;
 	private Animator[] animators;
 
-	private bool moveHorizontaly;
-	private bool moveVertically;
+	private bool moveHorizontaly, moveVertically;
 	private bool isDead = false;
 
 	private GameObject activeSkill;
@@ -75,6 +74,34 @@ public class PlayerController : MonoBehaviour
 			SelectSkill();
 			Fire(fireX, fireY);
 		}
+	}
+
+	public void ReduceHealth(int damage)
+	{
+		if (!isDead) {
+			SoundManager.instance.PlayHurtClip();
+
+			health -= damage;
+			canvasController.ReduceHealthBar(health);
+
+			if (health <= 0) {
+				StartCoroutine(PlayerDeath());
+			}
+		}
+	}
+
+	private IEnumerator PlayerDeath()
+	{
+		print("Player Died Do something");
+		isDead = true;
+		myRigidbody2D.isKinematic = true;
+		myRigidbody2D.velocity = new Vector3(0, 0, 0);
+		foreach (var animator in animators) {
+			animator.SetBool("IsDead", true);
+		}
+		SoundManager.instance.PlayDeathClip();
+		yield return new WaitForSeconds(2f);
+		LevelManager.instance.LoadLevel(LevelManager.LoseLevelString);
 	}
 
 	private void SetAnimations()
@@ -200,30 +227,5 @@ public class PlayerController : MonoBehaviour
 				rigBack.SetActive(false);
 			}
 		}
-	}
-
-	public void ReduceHealth(int damage)
-	{
-		SoundManager.instance.PlayHurtClip();
-		health -= damage;
-		canvasController.ReduceHealthBar(health);
-
-		if (health <= 0 && !isDead) {
-			StartCoroutine(PlayerDeath());
-		}
-	}
-
-	private IEnumerator PlayerDeath()
-	{
-		print("Player Died Do something");
-		isDead = true;
-		myRigidbody2D.isKinematic = true;
-		myRigidbody2D.velocity = new Vector3(0, 0, 0);
-		foreach (var animator in animators) {
-			animator.SetBool("IsDead", true);
-		}
-		SoundManager.instance.PlayDeathClip();
-		yield return new WaitForSeconds(2f);
-		LevelManager.instance.LoadLevel("Lose Level");
 	}
 }
