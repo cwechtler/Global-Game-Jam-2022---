@@ -7,12 +7,12 @@ public class LevelManager : MonoBehaviour {
 
 	public static LevelManager instance = null;
 
-	public const string MainMenuString = "Main Menu with Leaderboard";
+	public const string MainMenuString = "Main Menu";
 	public const string OptionsString = "Options";
-	public const string Level1String = "MikeTest";
+	public const string Level1String = "Level 1";
 	public const string LoseLevelString = "Lose Level";
 
-#if UNITY_WEBGL
+	#if UNITY_WEBGL
 	[Tooltip("For browser session storage. Uncheck to set URL manually")]
 	[SerializeField] private bool setSessionStorageGameQuitURL = false;
 	
@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	void Start(){
+	private void Start(){
 		currentScene = SceneManager.GetActiveScene().name;
 	}
 
@@ -59,36 +59,6 @@ public class LevelManager : MonoBehaviour {
 		}
 	}
 
-	public void LoadLevel (string name, bool restart = false){
-		Debug.Log("Level load requested for: " + name);
-		if (restart) {
-			GameController.instance.resetGame();
-		}
-		StartCoroutine(LoadLevel(name, .9f));
-	}
-
-	public IEnumerator LoadLevel(string name, float waitTime)
-	{
-		GameController.instance.FadePanel();
-		yield return new WaitForSeconds(waitTime);
-		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
-		SceneManager.LoadScene(name);
-	}
-
-	public void LoadLevel(int levelIndex, float waitTime) {
-		StartCoroutine(LoadScene(levelIndex, waitTime));
-	}
-
-	public void LoadLevelAdditive(string name) {
-		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
-		SceneManager.LoadScene(name, LoadSceneMode.Additive);
-	}
-	
-	public void LoadNextLevel() {
-		StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1, .9f));
-		currentScene = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1).name;
-	}
-
 	private IEnumerator LoadScene(string name, float waitTime)
 	{
 		GameController.instance.FadePanel();
@@ -107,12 +77,9 @@ public class LevelManager : MonoBehaviour {
 		AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(sceneToLoad);
 		yield return new WaitUntil(() => asyncOperation.isDone);
 		print("Scene " + currentScene + " Loaded");
-		//if (currentScene == "Level 1") {
-		//	GameController.instance.LoadSceneObjects();
-		//}	
 	}
 
-	public IEnumerator UnloadScene(float waitTime, string name)
+	private IEnumerator UnloadScene(float waitTime, string name)
 	{
 		float counter = 0f;
 
@@ -124,6 +91,69 @@ public class LevelManager : MonoBehaviour {
 			SceneManager.UnloadSceneAsync(name);
 		}
 		yield return null;
+	}
+
+	private int ReferanceIndex(string scene)
+	{
+		int randomIndex = Random.Range(2, SoundManager.instance.MusicArrayLength);
+		int clipIndex;
+		switch (scene) {
+			case MainMenuString:
+				clipIndex = 0;
+				break;
+			case OptionsString:
+				clipIndex = 0;
+				break;
+			case LoseLevelString:
+				clipIndex = 1;
+				break;
+			case "Test Level":
+			case "MikeTest":
+			case Level1String:	
+				clipIndex = randomIndex;
+				break;
+			case "Level 2":
+				clipIndex = randomIndex;
+				break;
+			default:
+				clipIndex = 0;
+				break;
+		}
+		return clipIndex;
+	}
+
+	public void LoadLevel(string name, bool restart = false)
+	{
+		Debug.Log("Level load requested for: " + name);
+		if (restart) {
+			GameController.instance.resetGame();
+		}
+		StartCoroutine(LoadLevel(name, .9f));
+	}
+
+	public IEnumerator LoadLevel(string name, float waitTime)
+	{
+		GameController.instance.FadePanel();
+		yield return new WaitForSeconds(waitTime);
+		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
+		SceneManager.LoadScene(name);
+	}
+
+	public void LoadLevel(int levelIndex, float waitTime)
+	{
+		StartCoroutine(LoadScene(levelIndex, waitTime));
+	}
+
+	public void LoadLevelAdditive(string name)
+	{
+		SoundManager.instance.PlayMusicForScene(ReferanceIndex(name));
+		SceneManager.LoadScene(name, LoadSceneMode.Additive);
+	}
+
+	public void LoadNextLevel()
+	{
+		StartCoroutine(LoadScene(SceneManager.GetActiveScene().buildIndex + 1, .9f));
+		currentScene = SceneManager.GetSceneByBuildIndex(SceneManager.GetActiveScene().buildIndex + 1).name;
 	}
 
 	public void QuitRequest()
@@ -144,34 +174,5 @@ public class LevelManager : MonoBehaviour {
 		#else
 			Application.Quit();
 		#endif
-	}
-
-	private int ReferanceIndex(string scene)
-	{
-		int randomIndex = Random.Range(2, SoundManager.instance.MusicArrayLength);
-		int clipIndex;
-		switch (scene) {
-			case MainMenuString:
-				clipIndex = 0;
-				break;
-			case OptionsString:
-				clipIndex = 0;
-				break;
-			case LoseLevelString:
-				clipIndex = 1;
-				break;
-			case "Test Level":
-			case Level1String:
-			case "Level 1":
-				clipIndex = randomIndex;
-				break;
-			case "Level 2":
-				clipIndex = randomIndex;
-				break;
-			default:
-				clipIndex = 0;
-				break;
-		}
-		return clipIndex;
 	}
 }

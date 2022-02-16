@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu with Leaderboard.unity
     guid: 382efd47bb673a3498eab1e65041927d
   - enabled: 1
-    path: Assets/Scenes/Main Menu.unity
+    path: Assets/Scenes/Main Menu old.unity
     guid: b2f34203dde0c4840890c58f186a03f7
   - enabled: 1
     path: Assets/Scenes/Options.unity

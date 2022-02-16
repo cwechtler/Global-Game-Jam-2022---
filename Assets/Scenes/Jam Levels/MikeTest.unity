@@ -9287,6 +9287,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Level Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 3871623961424445353, guid: a4bcf3397e6d29b4fbea5f6438a09087, type: 3}
+      propertyPath: setSessionStorageGameQuitURL
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5593258878902377785, guid: a4bcf3397e6d29b4fbea5f6438a09087, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -10821,6 +10825,10 @@ PrefabInstance:
     - target: {fileID: 738791366904862180, guid: 089e74b560024db4c955a449f4bef6fe, type: 3}
       propertyPath: m_RootOrder
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1455593212600815936, guid: 089e74b560024db4c955a449f4bef6fe, type: 3}
+      propertyPath: m_RootOrder
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2690801448964805413, guid: 089e74b560024db4c955a449f4bef6fe, type: 3}
       propertyPath: m_RootOrder

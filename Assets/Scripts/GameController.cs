@@ -3,7 +3,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class GameController : MonoBehaviour
 	public GameObject playerGO { get; private set; }
 	public bool isPaused { get; private set; }
 	public float timeDeltaTime { get; private set; }
-	public bool OptionsOverlayOpen { get; set; } = false;
 	public int EnemiesKilled { get; set; }
 	public int ActiveSkillIndex { get; set; }
 	public int Shadow { get => shadow; }
@@ -22,12 +20,9 @@ public class GameController : MonoBehaviour
 	public string PlayerName { get; set; }
 	public List<Tuple<string, int>> HighScores { get => highScores; set => highScores = value; }
 
-
 	private List<Tuple<string, int>> highScores = new List<Tuple<string, int>>();
 	private GameObject fadePanel;
-	private Vector3 spawnPointLocation;
 	private Animator animator;
-	private bool continueGame = false;
 	private int shadow, air, fire, water;
 
 	private void Awake()
@@ -59,21 +54,24 @@ public class GameController : MonoBehaviour
 	private void Update()
 	{
 		if (Input.GetButtonDown("Pause")) {
-			if (!GameController.instance.isPaused) {
-				GameController.instance.PauseGame();
+			if (!isPaused) {
+				PauseGame();
 			}
 			else {
-				GameController.instance.ResumeGame();
+				ResumeGame();
 			}
 		}
 	}
 
-	private void FindSceneObjects() {
-		playerGO = GameObject.FindGameObjectWithTag("Player");
-		fadePanel = GameObject.FindGameObjectWithTag("Fade Panel");
-		if (fadePanel != null) {
-			animator = fadePanel.GetComponent<Animator>();
-		}
+	public bool SaveHighScore(string name)
+	{
+		highScores.Add(Tuple.Create(name, EnemiesKilled));
+		highScores.Sort((x, y) => y.Item2.CompareTo(x.Item2));
+
+		string json = JsonConvert.SerializeObject(highScores, Formatting.Indented);
+		PlayerPrefsManager.SetHighScores(json);
+
+		return true;
 	}
 
 	public void AddEnemyType(skillElementType skillElementType) {
@@ -108,29 +106,17 @@ public class GameController : MonoBehaviour
 		fadePanel.GetComponent<Animator>().SetBool("FadeIn", true);
 	}
 
-	public void PauseGame()
+	private void PauseGame()
 	{
 		timeDeltaTime = Time.deltaTime;
 		isPaused = true;
 		Time.timeScale = 0;
 	}
 
-	public void ResumeGame()
+	private void ResumeGame()
 	{
 		Time.timeScale = 1;
 		isPaused = false;
-	}
-
-	public void CloseOverlayOptions() {
-		isPaused = false;
-	}
-
-	public void LoadSceneObjects() {
-		FindSceneObjects();
-		if (continueGame) {
-			playerGO.transform.position = spawnPointLocation;
-			continueGame = false;
-		}
 	}
 
 	private IEnumerator RespawnPlayer(int waitToSpawn)
@@ -160,15 +146,5 @@ public class GameController : MonoBehaviour
 			}
 		}
 		yield return null;
-	}
-
-	public bool SaveHighScore(string name) {
-		highScores.Add(Tuple.Create(name, EnemiesKilled));
-		highScores.Sort((x, y) => y.Item2.CompareTo(x.Item2));
-
-		string json = JsonConvert.SerializeObject(highScores, Formatting.Indented);
-		PlayerPrefsManager.SetHighScores(json);
-
-		return true;
 	}
 }

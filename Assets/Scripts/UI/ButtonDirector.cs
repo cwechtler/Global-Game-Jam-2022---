@@ -14,6 +14,11 @@ public class ButtonDirector : MonoBehaviour
 		LevelManager.instance.LoadLevel(LevelManager.Level1String, true);
 	}
 
+	public void MainMenu()
+	{
+		LevelManager.instance.LoadLevel(LevelManager.MainMenuString);
+	}
+
 	public void Quit()
 	{
 		LevelManager.instance.QuitRequest();

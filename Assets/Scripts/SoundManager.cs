@@ -20,11 +20,10 @@ public class SoundManager : MonoBehaviour {
 
 	public int MusicArrayLength { get => music.Length; }
 
-
 	private float audioVolume = 1f;
 	private int clipIndex = 0;
 
-	void Awake(){
+	private void Awake(){
 		if (instance != null){
 			Destroy(gameObject);
 		} else{
@@ -49,24 +48,18 @@ public class SoundManager : MonoBehaviour {
 		if (PlayerPrefs.HasKey("sfx_volume")) {
 			ChangeSFXVolume(PlayerPrefsManager.GetSFXVolume());
 		}
+
 		PlayMusicForScene(0);
 	}
 
 	private void Update(){
-		if (ambientAudioSource.isPlaying) {
+		PlayRandomAmbient();
 
-		}
-		//if (LevelManager.instance.currentScene != "Main Menu") {
-			PlayRandomAmbient();
-		//}
-
-		//if(music.Length > 0)
-		//	MusicSelect();
 		VolumeFadeIn(MusicAudioSource);
 		VolumeFadeIn(ambientAudioSource);
 	}
 
-	void VolumeFadeIn(AudioSource audioSource) {
+	private void VolumeFadeIn(AudioSource audioSource) {
 		if (audioVolume <= 1f){
 			audioVolume += fadeInTime * Time.deltaTime;
 			audioSource.volume = audioVolume;
@@ -83,7 +76,7 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
-	void VolumeFadeOut(AudioSource audioSource) {
+	private void VolumeFadeOut(AudioSource audioSource) {
 		if (audioVolume >= 1f){
 			audioVolume -= fadeInTime * Time.deltaTime;
 			audioSource.volume = audioVolume;
@@ -95,48 +88,20 @@ public class SoundManager : MonoBehaviour {
 			audioSource.Stop();
 		}
 	}
-	private void playRandomMusic() {
-		int clip = Random.Range(1, music.Length);
-		MusicAudioSource.clip = music[clip];
-	}
 
-	public void PlayMusicForScene(int index) {
-		if (music.Length > 0) {
-			MusicAudioSource.clip = music[index];
-			if (LevelManager.instance.currentScene == "MikeTest") {
-				MusicAudioSource.volume = 0;
-				audioVolume = 0f;
-			}
+	private void PlayRandomAmbient()
+	{
+		if (!ambientAudioSource.isPlaying && ambientClips.Length > 0) {
+			clipIndex = Random.Range(0, ambientClips.Length);
+			ambientAudioSource.PlayOneShot(ambientClips[clipIndex]);
 		}
 	}
 
-	//public void MusicSelect()
-	//{
-	//	switch (LevelManager.instance.currentScene) {
-	//		case "Main Menu":
-	//			MusicAudioSource.clip = music[0];
-	//			break;
-
-	//		case "Options":
-	//			MusicAudioSource.clip = music[0];
-	//			break;
-	//		case "Lose Level":
-	//			MusicAudioSource.clip = music[1];
-	//			break;
-	//		case "Test Level":
-	//		case "MikeTest":
-	//		case "Level 1":
-	//			MusicAudioSource.clip = music[2];
-	//			break;
-
-	//		case "Level 2":
-	//			MusicAudioSource.clip = music[2];
-	//			break;
-
-	//		default:
-	//			break;
-	//	}
-	//}
+	private void playRandomMusic()
+	{
+		int clip = Random.Range(1, music.Length);
+		MusicAudioSource.clip = music[clip];
+	}
 
 	private void playRandomMusic(AudioClip[] audioClips)
 	{
@@ -146,17 +111,14 @@ public class SoundManager : MonoBehaviour {
 		}
 	}
 
-	public void EnemyDeathSound(AudioClip clip)
+	public void PlayMusicForScene(int index)
 	{
-		SFXAudioSource.pitch = 1f;
-		SFXAudioSource.PlayOneShot(clip);
-	}
-
-	void PlayRandomAmbient()
-	{
-		if (!ambientAudioSource.isPlaying && ambientClips.Length > 0) {
-			clipIndex = Random.Range(0, ambientClips.Length);
-			ambientAudioSource.PlayOneShot(ambientClips[clipIndex]);
+		if (music.Length > 0) {
+			MusicAudioSource.clip = music[index];
+			if (LevelManager.instance.currentScene == "MikeTest") {
+				MusicAudioSource.volume = 0;
+				audioVolume = 0f;
+			}
 		}
 	}
 
@@ -189,6 +151,12 @@ public class SoundManager : MonoBehaviour {
 	{
 		SFXAudioSource.pitch = 1f;
 		SFXAudioSource.PlayOneShot(deathClip);
+	}
+
+	public void EnemyDeathSound(AudioClip clip)
+	{
+		SFXAudioSource.pitch = 1f;
+		SFXAudioSource.PlayOneShot(clip);
 	}
 
 	public void ChangeMasterVolume(float volume) {

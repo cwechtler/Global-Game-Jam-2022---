@@ -3,6 +3,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class OptionsController : MonoBehaviour {
+
+	//turn tips off
+	//Difficulty level
+	//Key bindings
+
+
 	//[SerializeField] private float panelFadeTime;
 	[Space]
 	[SerializeField] private Slider masterVolumeSlider;
