@@ -8,6 +8,7 @@ TagManager:
   - Projectile
   - Fade Panel
   - Obsticle
+  - DropContainer
   layers:
   - Default
   - TransparentFX
@@ -21,7 +22,7 @@ TagManager:
   - Enemy
   - Obstacle
   - Suction
-  - 
+  - FireBall
   - 
   - 
   - 

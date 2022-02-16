@@ -7,6 +7,21 @@ public class PlayerPrefsManager : MonoBehaviour {
 	const string MUSIC_VOLUME_KEY = "music_volume";
 	const string SFX_VOLUME_KEY = "sfx_volume";
 
+	const string PLAYER_NAME_KEY = "player_name";
+	const string HIGH_SCORES_KEY = "high_scores";
+
+	public static string PlayerNameKey => PLAYER_NAME_KEY;
+	public static string HighScoresKey => HIGH_SCORES_KEY;
+
+	public static bool DoesKeyExist(string key) {
+		if (PlayerPrefs.HasKey(key)) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+
 	public static void SetMasterVolume(float volume) {
 		if (volume >= -40f && volume <= 1.000001f)
 		{
@@ -43,6 +58,26 @@ public class PlayerPrefsManager : MonoBehaviour {
 
 	public static float GetSFXVolume(){
 		return PlayerPrefs.GetFloat(SFX_VOLUME_KEY);
+	}
+
+	public static void SetPlayerName(string playerName)
+	{
+		PlayerPrefs.SetString(PLAYER_NAME_KEY, playerName);
+	}
+
+	public static string GetPlayerName()
+	{
+		return PlayerPrefs.GetString(PLAYER_NAME_KEY);
+	}
+
+	public static void SetHighScores(string playerName)
+	{
+		PlayerPrefs.SetString(HIGH_SCORES_KEY, playerName);
+	}
+
+	public static string GetHighScores()
+	{
+		return PlayerPrefs.GetString(HIGH_SCORES_KEY);
 	}
 
 	public static void DeleteAllPlayerPrefs() {

@@ -19,8 +19,6 @@ public class Destroyer : MonoBehaviour
 			skillElementType type = enemy.SkillElementTypeToDestroy;
 			if (skillElementType == type) {
 				enemy.reduceHealth(100);
-				//GameController.instance.EnemiesKilled ++;
-				//Destroy(collision.gameObject);
 			}
 		}
 	}

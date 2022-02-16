@@ -65,14 +65,14 @@ public class OptionsController : MonoBehaviour {
 	}
 
 	public void MainMenu() {
-		LevelManager.instance.LoadLevel("Main Menu");
+		LevelManager.instance.LoadLevel(LevelManager.MainMenuString);
 	}
 	
 	public void SaveAndExit(){
 		PlayerPrefsManager.SetMasterVolume (masterVolumeSlider.value);
 		PlayerPrefsManager.SetMusicVolume (musicVolumeSlider.value);
 		PlayerPrefsManager.SetSFXVolume(sfxVolumeSlider.value);
-		LevelManager.instance.LoadLevel("Main Menu");
+		LevelManager.instance.LoadLevel(LevelManager.MainMenuString);
 
 		//if (GameController.instance.isPaused)
 		//{

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,8 +7,21 @@ public class LevelManager : MonoBehaviour {
 
 	public static LevelManager instance = null;
 
-	#if UNITY_WEBGL
-		[SerializeField] private string webglQuitURL = "about:blank";
+	public const string MainMenuString = "Main Menu with Leaderboard";
+	public const string OptionsString = "Options";
+	public const string Level1String = "MikeTest";
+	public const string LoseLevelString = "Lose Level";
+
+#if UNITY_WEBGL
+	[Tooltip("For browser session storage. Uncheck to set URL manually")]
+	[SerializeField] private bool setSessionStorageGameQuitURL = false;
+	
+	[ConditionalHide("setSessionStorageGameQuitURL", true, false)]
+	[Tooltip("This is the string value of the url sessionstorage Item you want to get")]
+	[SerializeField] private string sessionStorageItem;
+	[Space]
+	[ConditionalHide("setSessionStorageGameQuitURL", true, true)]
+	[SerializeField] private string webglQuitURL = "about:blank";
 	#endif
 
 	public string currentScene { get; private set; }
@@ -31,14 +45,14 @@ public class LevelManager : MonoBehaviour {
 			currentScene = SceneManager.GetActiveScene().name;
 		}
 
-		if (Input.GetButtonDown("Enter")) {
-			if (currentScene != "Main Menu") {
-				LoadLevel("Main Menu");
-			}
-			else {
-				LoadLevel("MikeTest");
-			}
-		}
+		//if (Input.GetButtonDown("Enter")) {
+		//	if (currentScene != MainMenuString) {
+		//		LoadLevel(MainMenuString);
+		//	}
+		//	else {
+		//		LoadLevel(Level1String);
+		//	}
+		//}
 
 		if (Input.GetButtonDown("Cancel")) {
 			QuitRequest();
@@ -119,7 +133,14 @@ public class LevelManager : MonoBehaviour {
 		#if UNITY_EDITOR
 			UnityEditor.EditorApplication.isPlaying = false;
 		#elif UNITY_WEBGL
-			Application.OpenURL(webglQuitURL);
+			Application.Quit();
+			if (setSessionStorageGameQuitURL) {
+				WebGLPluginJS.SessionRedirect(sessionStorageItem);
+			}
+			else {
+				WebGLPluginJS.Redirect(webglQuitURL);
+			}
+		
 		#else
 			Application.Quit();
 		#endif
@@ -130,17 +151,17 @@ public class LevelManager : MonoBehaviour {
 		int randomIndex = Random.Range(2, SoundManager.instance.MusicArrayLength);
 		int clipIndex;
 		switch (scene) {
-			case "Main Menu":
+			case MainMenuString:
 				clipIndex = 0;
 				break;
-			case "Options":
+			case OptionsString:
 				clipIndex = 0;
 				break;
-			case "Lose Level":
+			case LoseLevelString:
 				clipIndex = 1;
 				break;
 			case "Test Level":
-			case "MikeTest":
+			case Level1String:
 			case "Level 1":
 				clipIndex = randomIndex;
 				break;
