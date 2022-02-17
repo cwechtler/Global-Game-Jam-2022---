@@ -5,10 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
-  - Projectile
   - Fade Panel
   - Obsticle
   - DropContainer
+  - Skill
+  - Collectable
   layers:
   - Default
   - TransparentFX

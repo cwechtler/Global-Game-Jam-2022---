@@ -4,11 +4,31 @@ using UnityEngine;
 
 public class ShowInstructions : MonoBehaviour
 {
-    [SerializeField] private GameObject instructions;
+	[SerializeField] private GameObject instructions;
+	[SerializeField] private bool showByTimer;
+	[ConditionalHide("showByTimer", true)]
+	[SerializeField] private float seconds;
+	[ConditionalHide("showByTimer", true,true)]
+	[SerializeField] private GameObject spawnerToActivateInstructions;
 
-    void Start()
-    {
-        instructions.SetActive(true);
-    }
+	private float timeOfAnimation;
+
+	private void Start()
+	{
+		timeOfAnimation = instructions.GetComponent<Animator>().runtimeAnimatorController.animationClips[0].length;
+		StartCoroutine(SetInstructionsOn(timeOfAnimation));
+	}
+
+	private IEnumerator SetInstructionsOn(float time) {
+		if (showByTimer) {
+			yield return new WaitForSeconds(seconds);
+		}
+		else {
+			yield return new WaitUntil(() => spawnerToActivateInstructions.activeInHierarchy);
+		}		
+		instructions.SetActive(true);
+		yield return new WaitForSeconds(time);
+		this.gameObject.SetActive(false);
+	}
 
 }

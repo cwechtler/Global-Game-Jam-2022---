@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightningBoltMaster : Projectile
+public class LightningBoltMaster : SkillConfig
 {
 	[SerializeField] private float duration = 5f;
 	private bool hitObject = false;

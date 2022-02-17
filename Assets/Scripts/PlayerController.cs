@@ -48,7 +48,7 @@ public class PlayerController : MonoBehaviour
 		skillWasCast = new bool[skills.Length];
 
 		for (int i = 0; i < skills.Length; i++) {
-			Projectile skill = skills[i].GetComponent<Projectile>();
+			SkillConfig skill = skills[i].GetComponent<SkillConfig>();
 			coolDownTimes[i] = skill.CoolDownTime;
 			canvasController.SetCoolDownTime(i, coolDownTimes[i]);
 			canvasController.SetSkillImages(i, skill.SkillImage);
@@ -124,8 +124,8 @@ public class PlayerController : MonoBehaviour
 		GameController.instance.ActiveSkillIndex = index;
 		activeSkillIndex = index;
 		activeSkill = skills[index];
-		Projectile activeSkillProjectile = activeSkill.GetComponent<Projectile>();
-		firingRate = activeSkillProjectile.FireRate;
+		SkillConfig activeSkillSkillConfig = activeSkill.GetComponent<SkillConfig>();
+		firingRate = activeSkillSkillConfig.FireRate;
 		canvasController.UpdateTextColor();
 	}
 
@@ -150,7 +150,7 @@ public class PlayerController : MonoBehaviour
 			skillSpawner.eulerAngles = new Vector3(0, 0, Mathf.Atan2(fireY, fireX) * 180 / Mathf.PI);
 			if (skillWasCast[activeSkillIndex] == false) {
 				skillWasCast[activeSkillIndex] = true;
-				string skillType = activeSkill.GetComponent<Projectile>().SkillElementType.ToString();
+				string skillType = activeSkill.GetComponent<SkillConfig>().SkillElementType.ToString();
 				foreach (var animator in animators) {
 					animator.SetTrigger("Attack");
 				}
@@ -193,10 +193,10 @@ public class PlayerController : MonoBehaviour
 
 	private IEnumerator ThrowSkill(float fireX, float fireY)
 	{
-		GameObject projectile = Instantiate(activeSkill, transform.position, Quaternion.identity) as GameObject;
-		Rigidbody2D projectileRidgidbody2D = projectile.GetComponent<Rigidbody2D>();
-		projectileRidgidbody2D.velocity = new Vector3(-fireX, -fireY, 0);
-		projectileRidgidbody2D.velocity = (Vector3.Normalize(projectileRidgidbody2D.velocity) * projectileSpeed);
+		GameObject SkillConfig = Instantiate(activeSkill, transform.position, Quaternion.identity) as GameObject;
+		Rigidbody2D SkillConfigRidgidbody2D = SkillConfig.GetComponent<Rigidbody2D>();
+		SkillConfigRidgidbody2D.velocity = new Vector3(-fireX, -fireY, 0);
+		SkillConfigRidgidbody2D.velocity = (Vector3.Normalize(SkillConfigRidgidbody2D.velocity) * projectileSpeed);
 		yield return new WaitForSeconds(firingRate);
 	}
 

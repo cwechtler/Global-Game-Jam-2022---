@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterJet : Projectile
+public class WaterJet : SkillConfig
 {
 	[Space]
 	[SerializeField] private float waterJetDuration = 1.5f; 

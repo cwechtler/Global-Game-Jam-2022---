@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class VacumeHole : Projectile
+public class VacumeHole : SkillConfig
 {
 	[Space]
 	[SerializeField] private float vacumeHoleDuration = 2f;
