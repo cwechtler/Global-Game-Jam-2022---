@@ -17,11 +17,6 @@ public class LightningBoltMaster : SkillConfig
 		StartCoroutine(DestroyLightning(duration));
 	}
 
-	void Update()
-	{
-		
-	}
-
 	private IEnumerator DestroyLightning(float skillDuration)
 	{
 		yield return new WaitForSeconds(skillDuration);

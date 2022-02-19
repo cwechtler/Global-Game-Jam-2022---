@@ -57,6 +57,7 @@ public class Enemy : MonoBehaviour
 			SoundManager.instance.EnemyDeathSound(deathClip);
 			GameController.instance.EnemiesKilled++;
 			GameController.instance.AddEnemyType(skillElementTypeToDestroy);
+
 			//Drop Experience - MT
 			GameObject drop = Instantiate(expDrop, transform.position, transform.rotation) as GameObject;
 			drop.GetComponent<Experience>().ExperiencePointsWorth = experiencePointValue;
