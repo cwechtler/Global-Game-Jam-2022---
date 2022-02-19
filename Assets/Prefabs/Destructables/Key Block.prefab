@@ -82,6 +82,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9033852873464838860}
   - component: {fileID: 5343688693240816657}
+  - component: {fileID: 8709122633554318405}
   m_Layer: 0
   m_Name: Key Block
   m_TagString: Untagged
@@ -155,3 +156,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &8709122633554318405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3124004939315876435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee974c27e2bc764aae77d29f5813fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToDrop: {fileID: 4275769974298580243, guid: a2675b2f6d24eeb4fab70c33e525b81b, type: 3}
+  skillRequiredToDestroy: 0
