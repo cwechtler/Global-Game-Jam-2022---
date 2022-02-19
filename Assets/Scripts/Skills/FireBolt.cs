@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireBolt : Projectile
+public class FireBolt : SkillConfig
 {
 	[SerializeField] private float range = 1f;
 	[Space]

@@ -11,7 +11,7 @@ public enum skillElementType
 
 }
 
-public class Projectile : MonoBehaviour
+public class SkillConfig : MonoBehaviour
 {
 	[SerializeField] private Sprite skillImage;
 	[SerializeField] private float damage = 100f;

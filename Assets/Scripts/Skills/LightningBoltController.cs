@@ -33,7 +33,7 @@ public class LightningBoltController : MonoBehaviour
 		GetComponentInParent<LightningBoltMaster>().HitObject = true;
 		if (collision.gameObject.CompareTag("Enemy")) {
 			skillElementType type = collision.GetComponent<Enemy>().SkillElementTypeToDestroy;
-			skillElementType skillElementType = GetComponentInParent<Projectile>().SkillElementType;
+			skillElementType skillElementType = GetComponentInParent<SkillConfig>().SkillElementType;
 			if (skillElementType == type) {
 				lightningBoltScript.EndObject = collision.gameObject;
 				childBolt.EndObject = collision.gameObject;
