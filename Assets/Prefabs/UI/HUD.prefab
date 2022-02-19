@@ -561,7 +561,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &4943477119617176523
 RectTransform:
   m_ObjectHideFlags: 0
@@ -697,8 +697,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   instructions: {fileID: 5405272223626386469}
-  showByTimer: 0
-  seconds: 0
+  showByTimer: 1
+  seconds: 15
   spawnerToActivateInstructions: {fileID: 0}
 --- !u!1 &5405272223626386469
 GameObject:
@@ -1318,6 +1318,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pausePanel: {fileID: 864371655}
+  inventory: {fileID: 1333293659}
   defaultTextColor:
     serializedVersion: 2
     rgba: 4294937088

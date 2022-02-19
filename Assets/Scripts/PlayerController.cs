@@ -21,6 +21,9 @@ public class PlayerController : MonoBehaviour
 
 	public GameObject LightningEndPoint { get => lightningEndPoint; }
 	public int ExperiencePoints { get => experiencePoints; set => experiencePoints = value; }
+	public List<GameObject> InventoryItems { get => inventoryItems; set => inventoryItems = value; }
+
+	private List<GameObject> inventoryItems = new List<GameObject>();
 
 	private Rigidbody2D myRigidbody2D;
 	private Animator[] animators;
@@ -74,6 +77,11 @@ public class PlayerController : MonoBehaviour
 			SelectSkill();
 			Fire(fireX, fireY);
 		}
+	}
+
+	public void AddToInventory(GameObject inventoryPrefab) {
+		inventoryItems.Add(inventoryPrefab);
+		canvasController.AddInventoryItem(inventoryPrefab);
 	}
 
 	public void ReduceHealth(int damage)
