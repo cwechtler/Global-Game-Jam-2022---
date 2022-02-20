@@ -153,6 +153,11 @@ public class SoundManager : MonoBehaviour {
 		SFXAudioSource.PlayOneShot(deathClip);
 	}
 
+	public void PlayDestructibleSound(AudioClip clip)
+	{
+		SFXAudioSource.PlayOneShot(clip);
+	}
+
 	public void EnemyDeathSound(AudioClip clip)
 	{
 		SFXAudioSource.pitch = 1f;
