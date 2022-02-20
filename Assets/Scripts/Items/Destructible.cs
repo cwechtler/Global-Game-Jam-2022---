@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Destructable : MonoBehaviour
+public class Destructible : MonoBehaviour
 {
 	[SerializeField] private GameObject prefabToDrop;
 	[SerializeField] private skillElementType skillRequiredToDestroy;
@@ -18,6 +18,16 @@ public class Destructable : MonoBehaviour
 				GameObject.Destroy(this.gameObject);
 
 			}
+		}
+	}
+
+	private void OnParticleCollision(GameObject particle)
+	{
+		SkillConfig particleParent = particle.GetComponentInParent<SkillConfig>();
+		if (particleParent.SkillElementType == skillRequiredToDestroy && !dropped) {
+			dropped = true;
+			GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);
+			GameObject.Destroy(this.gameObject);
 		}
 	}
 }

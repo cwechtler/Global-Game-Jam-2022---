@@ -30,5 +30,4 @@ public class ShowInstructions : MonoBehaviour
 		yield return new WaitForSeconds(time);
 		this.gameObject.SetActive(false);
 	}
-
 }

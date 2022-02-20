@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8891393870951830580}
   - component: {fileID: 5481648494173997801}
-  - component: {fileID: 9144319533156793021}
   - component: {fileID: 9021445444834773435}
-  m_Layer: 0
+  - component: {fileID: 9144319533156793021}
+  m_Layer: 13
   m_Name: Pot
-  m_TagString: Untagged
+  m_TagString: Destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1971001983
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 736ed31515163524ca3117901840a5b6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -84,20 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &9144319533156793021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3269775224175148203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ee974c27e2bc764aae77d29f5813fd2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefabToDrop: {fileID: 1587895239563120619, guid: 3b669230faa0e2241bf5ea0ac2603be0, type: 3}
-  skillRequiredToDestroy: 0
 --- !u!70 &9021445444834773435
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,3 +100,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.12, y: 1.67}
   m_Direction: 0
+--- !u!114 &9144319533156793021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3269775224175148203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee974c27e2bc764aae77d29f5813fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabToDrop: {fileID: 1587895239563120619, guid: 3b669230faa0e2241bf5ea0ac2603be0, type: 3}
+  skillRequiredToDestroy: 0

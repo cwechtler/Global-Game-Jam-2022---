@@ -43,7 +43,7 @@ public class FireBolt : SkillConfig
 
 	protected override void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Obsticle")) {
+		if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Obsticle") || collision.gameObject.CompareTag("Destructible")) {
 			this.GetComponent<Rigidbody2D>().velocity = new Vector3(0, 0, 0);
 			var colls = Physics2D.OverlapCircleAll(transform.position, areaEffect);
 			foreach (var col in colls) {
