@@ -4,26 +4,33 @@ using UnityEngine;
 
 public class TriggerAnimation : MonoBehaviour
 {
-    public GameObject myDestructable;
-    public Animator myAnimator;
-    public string myTrigger;
-
-    public Animator exitAnimator;
-    public string exitTrigger;
+    [Header("Name")]
+    [SerializeField] private GameObject myDestructable;
+    [SerializeField] private Animator myAnimator;
+    [SerializeField] private string myTrigger;    
+    [SerializeField] private AudioClip soundClip;
+    [Space]
+    [SerializeField] private Animator exitAnimator;
+    [SerializeField] private string exitTrigger;
 
     // Start is called before the first frame update
-    void Update()
+    void Start()
     {
-        if (myDestructable == null)
-        {
-            myAnimator.SetTrigger(myTrigger);
-        }
-        
+        StartCoroutine(Something(2f));
     }
 
+    // Called by Animation Event
     void ActivateExit()
     {
         exitAnimator.SetTrigger(exitTrigger);
     }
+
+    IEnumerator Something(float value)
+    {
+        yield return new WaitUntil(()=>myDestructable == null);
+        SoundManager.instance.PlayDestructibleSound(soundClip);
+        myAnimator.SetTrigger(myTrigger);
+    }
+
 
 }
