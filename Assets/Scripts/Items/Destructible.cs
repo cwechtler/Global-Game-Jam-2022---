@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour
 {
-	[SerializeField] private GameObject prefabToDrop;
 	[SerializeField] private skillElementType skillRequiredToDestroy;
+	[Space]
+	[Tooltip("Check box to select a prefab item to be dropped on destroy")]
+	[SerializeField] private bool dropItem = true;
+	[ConditionalHide("dropItem", true)]
+	[SerializeField] private GameObject prefabToDrop;
+
 
 	private bool dropped;
 
@@ -14,7 +19,9 @@ public class Destructible : MonoBehaviour
 		if (collision.CompareTag("Skill") && !dropped) {
 			if (collision.GetComponentInParent<SkillConfig>().SkillElementType == skillRequiredToDestroy) {
 				dropped = true;
-				GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);
+				if (dropItem) {
+					GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);
+				}
 				GameObject.Destroy(this.gameObject);
 
 			}
@@ -26,7 +33,9 @@ public class Destructible : MonoBehaviour
 		SkillConfig particleParent = particle.GetComponentInParent<SkillConfig>();
 		if (particleParent.SkillElementType == skillRequiredToDestroy && !dropped) {
 			dropped = true;
-			GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);
+			if (dropItem) {
+				GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);
+			}
 			GameObject.Destroy(this.gameObject);
 		}
 	}
