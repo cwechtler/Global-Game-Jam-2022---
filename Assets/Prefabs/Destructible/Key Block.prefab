@@ -205,5 +205,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee974c27e2bc764aae77d29f5813fd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefabToDrop: {fileID: 1587895239563120619, guid: 3b669230faa0e2241bf5ea0ac2603be0, type: 3}
   skillRequiredToDestroy: 0
+  dropItem: 0
+  prefabToDrop: {fileID: 1587895239563120619, guid: 3b669230faa0e2241bf5ea0ac2603be0, type: 3}
