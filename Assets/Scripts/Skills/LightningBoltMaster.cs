@@ -9,8 +9,9 @@ public class LightningBoltMaster : SkillConfig
 	private ParticleSystem feetParticleSystem;
 
 	public bool HitObject { get => hitObject; set => hitObject = value; }
+    public float Duration { get => duration; }
 
-	void Start()
+    void Start()
 	{
 		transform.SetParent(GameObject.FindGameObjectWithTag("Player").transform);
 		feetParticleSystem = GetComponentInChildren<ParticleSystem>();
