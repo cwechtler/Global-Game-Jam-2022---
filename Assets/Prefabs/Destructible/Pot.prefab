@@ -115,3 +115,8 @@ MonoBehaviour:
   skillRequiredToDestroy: 0
   dropItem: 1
   prefabToDrop: {fileID: 1587895239563120619, guid: 3b669230faa0e2241bf5ea0ac2603be0, type: 3}
+  sfxClips:
+  - {fileID: 0}
+  hasDestructableStates: 0
+  destructibleSpriteStates:
+    Value: []

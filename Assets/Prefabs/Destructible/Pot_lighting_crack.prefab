@@ -120,6 +120,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3e3ddf4746a6b474293889d558d4146a, type: 3}
   - {fileID: 8300000, guid: 81eda8b20b51aee429344fa8ef364e77, type: 3}
   - {fileID: 8300000, guid: 38ef8c025f49223478c0a32222f9781b, type: 3}
+  hasDestructableStates: 1
+  state: 1
   destructibleSpriteStates:
-  - {fileID: 21300000, guid: 23877af7b001c6b4c971b214d765af22, type: 3}
-  - {fileID: 21300000, guid: 27282bd5af999fa48bff4593fd9609c0, type: 3}
+    Value:
+    - {fileID: 21300000, guid: 27282bd5af999fa48bff4593fd9609c0, type: 3}

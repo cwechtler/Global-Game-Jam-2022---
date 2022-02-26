@@ -85,7 +85,7 @@ GameObject:
   - component: {fileID: 1038947775}
   - component: {fileID: 1038947774}
   m_Layer: 13
-  m_Name: Key Block
+  m_Name: Mystery Block
   m_TagString: Destructible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

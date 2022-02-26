@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.domybest.mybox": "https://github.com/Deadcows/MyBox.git",
     "com.unity.2d.animation": "5.0.10",
     "com.unity.2d.ik": "3.0.2-preview.3",
     "com.unity.2d.pixel-perfect": "4.0.1",

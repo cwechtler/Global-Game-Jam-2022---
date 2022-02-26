@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyBox;
 
-public enum destructibleStates 
+public enum DestructibleState 
 { 
 	Fixed,
 	Cracked,
@@ -13,65 +14,38 @@ public class Destructible : MonoBehaviour
 {
 	[SerializeField] private skillElementType skillRequiredToDestroy;
 	[Space]
-	[Tooltip("Check box to select a prefab item to be dropped on destroy")]
+	[Tooltip("Check box to select a prefab item to be dropped on destroy.")]
 	[SerializeField] private bool dropItem = true;
-	[ConditionalHide("dropItem", true)]
+	[ConditionalField("dropItem")]
 	[SerializeField] private GameObject prefabToDrop;
-	[SerializeField] private AudioClip[] sfxClips;
 	[Space]
-	[Tooltip("Fixed to broken order")]
-	[SerializeField] private Sprite[] destructibleSpriteStates;
+	[SerializeField] private AudioClip[] sfxClips = new AudioClip[1];
+	[Separator("Destructable States Options", true)]
+	[Tooltip("Leave Unchecked to destroy Item immediately on hit.")]
+	[SerializeField] private bool hasDestructableStates = false;
+	[ConditionalField(nameof(hasDestructableStates))]
+	[SerializeField] private DestructibleState state = DestructibleState.Fixed;
+	[Tooltip("Fixed to broken order.")]
+	[ConditionalField(nameof(hasDestructableStates))]
+	public CollectionWrapper<Sprite> destructibleSpriteStates;
 
 	private bool dropped;
-	private destructibleStates State;
 	private SpriteRenderer spriteRenderer;
 	private CapsuleCollider2D capsuleCollider2D;
-    void Start()
-    {
-		State = destructibleStates.Fixed;
+
+	private void Start()
+	{
 		spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 		capsuleCollider2D = gameObject.GetComponent<CapsuleCollider2D>();
-		print("Start: " + State);
 	}
 
-    private void UpdateSprite()
-    {
-		switch (State)
-		{
-			case destructibleStates.Fixed:
-				spriteRenderer.sprite = destructibleSpriteStates[0];
-				State = destructibleStates.Cracked;
-				print("Fixed: " + State);
-				break;
-			case destructibleStates.Cracked:
-				spriteRenderer.sprite = destructibleSpriteStates[1];
-				State = destructibleStates.Broken;
-				capsuleCollider2D.enabled = false;
-				print("Cracked: " + State);
-				if (dropItem)
-				{
-					GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);
-				}
-				break;
-			case destructibleStates.Broken:				
-				break;
-            default:
-				break;
-        }
-			
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Skill")) {
-			LightningBoltMaster skill = collision.GetComponentInParent<LightningBoltMaster>();
+		if (collision.CompareTag("Skill") && !dropped) {
+			SkillConfig skill = collision.GetComponentInParent<SkillConfig>();
 			if (skill.SkillElementType == skillRequiredToDestroy) {
-				//dropped = true;
-				float skillDuration = skill.Duration;
-				int randomClip = Random.Range(0, sfxClips.Length - 1);
-				//GameObject.Destroy(this.gameObject);
-				UpdateSprite();
-				SoundManager.instance.PlayDestructibleSound(sfxClips[randomClip]);
+				float skillDuration = skill.CoolDownTime;		
+				StartCoroutine(UpdateSprite(skillDuration));		
 			}
 		}
 	}
@@ -80,15 +54,52 @@ public class Destructible : MonoBehaviour
 	{
 		SkillConfig particleParent = particle.GetComponentInParent<SkillConfig>();
 		if (particleParent.SkillElementType == skillRequiredToDestroy && !dropped) {
-			dropped = true;
-			int randomClip = Random.Range(0, sfxClips.Length - 1);
-			//if (dropItem) {
-			//	GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);
-			//}
-			//GameObject.Destroy(this.gameObject);
-			State = destructibleStates.Cracked;
-			UpdateSprite();
-			SoundManager.instance.PlayDestructibleSound(sfxClips[randomClip]);
+			float skillDuration = particleParent.CoolDownTime;
+			StartCoroutine(UpdateSprite(skillDuration));
+		}
+	}
+
+	private IEnumerator UpdateSprite(float time)
+	{
+		dropped = true;
+		int randomClip = 0;
+		if (sfxClips.Length > 0) {
+			randomClip = Random.Range(0, sfxClips.Length - 1);
+		}
+		SoundManager.instance.PlayDestructibleSound(sfxClips[randomClip]);
+
+		if (hasDestructableStates) {
+			switch (state) {
+				case DestructibleState.Fixed:
+					spriteRenderer.sprite = destructibleSpriteStates.Value[0];
+					state = DestructibleState.Cracked;
+					break;
+				case DestructibleState.Cracked:
+					spriteRenderer.sprite = destructibleSpriteStates.Value[1];
+					state = DestructibleState.Broken;
+					capsuleCollider2D.enabled = false;
+					if (dropItem) {
+						GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);
+					}
+					break;
+				case DestructibleState.Broken:
+					break;
+				default:
+					break;
+			}
+
+			yield return new WaitForSeconds(time);
+
+			if (state != DestructibleState.Broken) {
+				dropped = false;
+			}
+		} else {
+			if (dropItem) {
+				GameObject itemDrop = Instantiate(prefabToDrop, transform.position, Quaternion.identity);		
+			}
+			state = DestructibleState.Broken;
+			Destroy(gameObject);
+			yield return null;
 		}
 	}
 }
