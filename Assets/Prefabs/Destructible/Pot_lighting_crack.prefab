@@ -123,5 +123,4 @@ MonoBehaviour:
   hasDestructableStates: 1
   state: 1
   destructibleSpriteStates:
-    Value:
-    - {fileID: 21300000, guid: 27282bd5af999fa48bff4593fd9609c0, type: 3}
+  - {fileID: 21300000, guid: 27282bd5af999fa48bff4593fd9609c0, type: 3}

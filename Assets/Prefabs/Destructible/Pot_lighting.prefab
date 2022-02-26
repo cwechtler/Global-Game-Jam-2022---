@@ -114,7 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   skillRequiredToDestroy: 2
   dropItem: 1
-  prefabToDrop: {fileID: 2992365815076170397, guid: 3655c4f7f08c97a4ea8c04f9a680dbee, type: 3}
+  prefabToDrop: {fileID: 1587895239563120619, guid: 3b669230faa0e2241bf5ea0ac2603be0, type: 3}
   sfxClips:
   - {fileID: 8300000, guid: 42a17940f83c5694eb37e9620f4d4e51, type: 3}
   - {fileID: 8300000, guid: 3e3ddf4746a6b474293889d558d4146a, type: 3}
@@ -123,4 +123,5 @@ MonoBehaviour:
   hasDestructableStates: 1
   state: 0
   destructibleSpriteStates:
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 23877af7b001c6b4c971b214d765af22, type: 3}
+  - {fileID: 21300000, guid: 27282bd5af999fa48bff4593fd9609c0, type: 3}

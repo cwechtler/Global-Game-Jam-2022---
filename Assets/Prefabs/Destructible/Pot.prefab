@@ -118,5 +118,5 @@ MonoBehaviour:
   sfxClips:
   - {fileID: 0}
   hasDestructableStates: 0
-  destructibleSpriteStates:
-    Value: []
+  state: 0
+  destructibleSpriteStates: []

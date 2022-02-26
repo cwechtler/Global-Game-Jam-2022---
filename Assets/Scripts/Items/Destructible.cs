@@ -17,18 +17,21 @@ public class Destructible : MonoBehaviour
 	[Tooltip("Check box to select a prefab item to be dropped on destroy.")]
 	[SerializeField] private bool dropItem = true;
 	//[ConditionalField("dropItem")]
+	[ConditionalHide("dropItem", true)]
 	[SerializeField] private GameObject prefabToDrop;
 	[Space]
 	[SerializeField] private AudioClip[] sfxClips = new AudioClip[1];
-	//[Separator("Destructable States Options", true)]
+	//[Separator("Destructable State Options", true)]
 	[Tooltip("Leave Unchecked to destroy Item immediately on hit.")]
 	[SerializeField] private bool hasDestructableStates = false;
 	//[ConditionalField(nameof(hasDestructableStates))]
+	[ConditionalHide("hasDestructableStates", true)]
 	[SerializeField] private DestructibleState state = DestructibleState.Fixed;
 	[Tooltip("Fixed to broken order.")]
 	//[ConditionalField(nameof(hasDestructableStates))]
 	//public CollectionWrapper<Sprite> destructibleSpriteStates;
-	[SerializeField] private Sprite[] destructibleSpriteStates;
+	[ConditionalHide("hasDestructableStates", true)]
+	[SerializeField] private Sprite[] destructibleSpriteStates = new Sprite[0];
 
 	private bool dropped;
 	private SpriteRenderer spriteRenderer;
