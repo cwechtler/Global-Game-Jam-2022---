@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MyBox;
+//using MyBox;
 
 public enum DestructibleState 
 { 
@@ -16,18 +16,19 @@ public class Destructible : MonoBehaviour
 	[Space]
 	[Tooltip("Check box to select a prefab item to be dropped on destroy.")]
 	[SerializeField] private bool dropItem = true;
-	[ConditionalField("dropItem")]
+	//[ConditionalField("dropItem")]
 	[SerializeField] private GameObject prefabToDrop;
 	[Space]
 	[SerializeField] private AudioClip[] sfxClips = new AudioClip[1];
-	[Separator("Destructable States Options", true)]
+	//[Separator("Destructable States Options", true)]
 	[Tooltip("Leave Unchecked to destroy Item immediately on hit.")]
 	[SerializeField] private bool hasDestructableStates = false;
-	[ConditionalField(nameof(hasDestructableStates))]
+	//[ConditionalField(nameof(hasDestructableStates))]
 	[SerializeField] private DestructibleState state = DestructibleState.Fixed;
 	[Tooltip("Fixed to broken order.")]
-	[ConditionalField(nameof(hasDestructableStates))]
-	public CollectionWrapper<Sprite> destructibleSpriteStates;
+	//[ConditionalField(nameof(hasDestructableStates))]
+	//public CollectionWrapper<Sprite> destructibleSpriteStates;
+	[SerializeField] private Sprite[] destructibleSpriteStates;
 
 	private bool dropped;
 	private SpriteRenderer spriteRenderer;
@@ -71,11 +72,13 @@ public class Destructible : MonoBehaviour
 		if (hasDestructableStates) {
 			switch (state) {
 				case DestructibleState.Fixed:
-					spriteRenderer.sprite = destructibleSpriteStates.Value[0];
+					//spriteRenderer.sprite = destructibleSpriteStates.Value[0];
+					spriteRenderer.sprite = destructibleSpriteStates[0];
 					state = DestructibleState.Cracked;
 					break;
 				case DestructibleState.Cracked:
-					spriteRenderer.sprite = destructibleSpriteStates.Value[1];
+					//spriteRenderer.sprite = destructibleSpriteStates.Value[1];
+					spriteRenderer.sprite = destructibleSpriteStates[1];
 					state = DestructibleState.Broken;
 					capsuleCollider2D.enabled = false;
 					if (dropItem) {
