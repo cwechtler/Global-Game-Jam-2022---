@@ -9,6 +9,7 @@ public class WaterJet : SkillConfig
 	[SerializeField] private float maxAudioVolume = 1f;
 
 	private GameObject player;
+	private PlayerController playerController;
 	private AudioSource audioSource;
 	private ParticleSystem[] waterjetParticleSystems;
 	//private ParticleSystem waterShieldParticleSystem;
@@ -19,6 +20,7 @@ public class WaterJet : SkillConfig
 	void Start()
 	{
 		player = GameObject.FindGameObjectWithTag("Player");
+		playerController = player.GetComponent<PlayerController>();
 		audioSource = GetComponent<AudioSource>();
 		waterjetParticleSystems = GetComponentsInChildren<ParticleSystem>();
 		StartCoroutine(DestroySkill(waterJetDuration));
@@ -26,12 +28,12 @@ public class WaterJet : SkillConfig
 
 	void Update()
 	{
-		float fireY = Input.GetAxis("ArrowsVertical");
-		float fireX = Input.GetAxis("ArrowsHorizontal");
+		float fireY = playerController.FireY; //Input.GetAxis("SpellVertical");
+		float fireX = playerController.FireX; //Input.GetAxis("SpellHorizontal");
 
 		transform.position = player.transform.position;
 		if (fireX != 0 || fireY != 0) {
-			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(fireX, -fireY) * 180 / Mathf.PI);
+			transform.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-fireX, fireY) * 180 / Mathf.PI);
 		}
 		if (!clear) {
 			if (audioVolume <= maxAudioVolume) {

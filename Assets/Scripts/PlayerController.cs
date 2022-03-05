@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerController : MonoBehaviour
 {
 	[SerializeField] private int health = 100;
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
 	[Space]
 	[Tooltip("Skill Prefabs")]
 	[SerializeField] private GameObject[] skills;
-	[SerializeField] private Transform skillSpawner, skillSpawnPoint;
+	[SerializeField] private Transform skillSpawner, skillSpawnPoint, activeSkillContainer;
 	[SerializeField] private GameObject lightningEndPoint;
 	[Space]
 	[SerializeField] private Transform notch;
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
 	public GameObject LightningEndPoint { get => lightningEndPoint; }
 	public int ExperiencePoints { get => experiencePoints; set => experiencePoints = value; }
 	public List<GameObject> InventoryItems { get => inventoryItems; set => inventoryItems = value; }
+	public float FireX { get => fireX; }
+	public float FireY { get => fireY; }
 
 	private List<GameObject> inventoryItems = new List<GameObject>();
 
@@ -33,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
 	private GameObject activeSkill;
 	private int activeSkillIndex;
-	private float firingRate;
+	private float firingRate, fireX, fireY;
 	private float[] coolDownTimes;
 	private float[] timerTimes;
 	private bool[] skillWasCast;
@@ -61,21 +64,10 @@ public class PlayerController : MonoBehaviour
 	void Update()
 	{
 		if (!isDead) {
-			float inputY = Input.GetAxis("Vertical");
-			float inputX = Input.GetAxis("Horizontal");
-
-			float fireY = Input.GetAxis("ArrowsVertical");
-			float fireX = Input.GetAxis("ArrowsHorizontal");
-
-			myRigidbody2D.velocity = new Vector2(speed.x * inputX, speed.y * inputY);
-			moveHorizontaly = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
-			moveVertically = Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon;
-
-			SetAnimations();
-			FlipDirection();
+			Move();
 
 			SelectSkill();
-			Fire(fireX, fireY);
+			Fire();
 		}
 	}
 
@@ -98,9 +90,28 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
+	private void Move()
+	{
+		float inputY = Input.GetAxis("Vertical");
+		float inputX = Input.GetAxis("Horizontal");
+
+		if (Input.GetMouseButton(0)) {
+			Vector3 direction = MousePointerDirection();
+
+			inputX = Mathf.Clamp(direction.x, -1, 1);
+			inputY = Mathf.Clamp(direction.y, -1, 1);
+		}
+
+		myRigidbody2D.velocity = new Vector2(speed.x * inputX, speed.y * inputY);
+		moveHorizontaly = Mathf.Abs(myRigidbody2D.velocity.x) > Mathf.Epsilon;
+		moveVertically = Mathf.Abs(myRigidbody2D.velocity.y) > Mathf.Epsilon;
+
+		SetAnimations();
+		FlipDirection();
+	}
+
 	private IEnumerator PlayerDeath()
 	{
-		print("Player Died Do something");
 		isDead = true;
 		myRigidbody2D.isKinematic = true;
 		myRigidbody2D.velocity = new Vector3(0, 0, 0);
@@ -110,22 +121,6 @@ public class PlayerController : MonoBehaviour
 		SoundManager.instance.PlayDeathClip();
 		yield return new WaitForSeconds(2f);
 		LevelManager.instance.LoadLevel(LevelManager.LoseLevelString);
-	}
-
-	private void SetAnimations()
-	{
-		if (moveHorizontaly || moveVertically) {
-			foreach (var animator in animators) {
-				if (animator.isActiveAndEnabled)
-					animator.SetBool("Move", true);
-			}
-		}
-		else {
-			foreach (var animator in animators) {
-				if (animator.isActiveAndEnabled)
-					animator.SetBool("Move", false);
-			}
-		}
 	}
 
 	private void SetActiveSkill(int index) {
@@ -139,6 +134,17 @@ public class PlayerController : MonoBehaviour
 
 	private void SelectSkill()
 	{
+		if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetButtonDown("Space")) {
+			if (activeSkillIndex == skills.Length - 1) activeSkillIndex = 0;
+			else activeSkillIndex++;
+			SetActiveSkill(activeSkillIndex);
+		}
+		if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
+			if (activeSkillIndex == 0) activeSkillIndex = skills.Length - 1;
+			else activeSkillIndex--;
+			SetActiveSkill(activeSkillIndex);
+		}
+
 		if (Input.GetButtonDown("Fire1")) {
 			SetActiveSkill(0);
 		}
@@ -153,9 +159,19 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	private void Fire(float fireX, float fireY) {
+	private void Fire() {
+		fireY = Input.GetAxis("SpellVertical");
+		fireX = Input.GetAxis("SpellHorizontal");
+
+		if (Input.GetMouseButton(1)) {
+			Vector3 direction = MousePointerDirection();
+
+			fireX = Mathf.Clamp(direction.x, -1, 1);
+			fireY = Mathf.Clamp(direction.y, -1, 1);
+		}
+
 		if ((fireX != 0 || fireY != 0)) {
-			skillSpawner.eulerAngles = new Vector3(0, 0, Mathf.Atan2(fireY, fireX) * 180 / Mathf.PI);
+			skillSpawner.eulerAngles = new Vector3(0, 0, Mathf.Atan2(-fireY, -fireX) * 180 / Mathf.PI);
 			if (skillWasCast[activeSkillIndex] == false) {
 				skillWasCast[activeSkillIndex] = true;
 				string skillType = activeSkill.GetComponent<SkillConfig>().SkillElementType.ToString();
@@ -192,7 +208,7 @@ public class PlayerController : MonoBehaviour
 	}
 
 	private void CastSkill() {
-		GameObject spell = Instantiate(activeSkill, transform.position, Quaternion.identity) as GameObject;
+		GameObject spell = Instantiate(activeSkill, transform.position, Quaternion.identity, activeSkillContainer) as GameObject;
 	}
 
 	private void PlaceSkill() {
@@ -203,22 +219,49 @@ public class PlayerController : MonoBehaviour
 	{
 		GameObject SkillConfig = Instantiate(activeSkill, transform.position, Quaternion.identity) as GameObject;
 		Rigidbody2D SkillConfigRidgidbody2D = SkillConfig.GetComponent<Rigidbody2D>();
-		SkillConfigRidgidbody2D.velocity = new Vector3(-fireX, -fireY, 0);
+		SkillConfigRidgidbody2D.velocity = new Vector3(fireX, fireY, 0);
 		SkillConfigRidgidbody2D.velocity = (Vector3.Normalize(SkillConfigRidgidbody2D.velocity) * projectileSpeed);
 		yield return new WaitForSeconds(firingRate);
 	}
 
+	private Vector3 MousePointerDirection()
+	{
+		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		mousePosition.z += Camera.main.nearClipPlane;
+
+		Vector3 heading = mousePosition - transform.position;
+		float distance = heading.magnitude - 5;
+		Vector3 direction = heading / distance;
+		return direction;
+	}
+
+	private void SetAnimations()
+	{
+		if (moveHorizontaly || moveVertically) {
+			foreach (var animator in animators) {
+				if (animator.isActiveAndEnabled)
+					animator.SetBool("Move", true);
+			}
+		}
+		else {
+			foreach (var animator in animators) {
+				if (animator.isActiveAndEnabled)
+					animator.SetBool("Move", false);
+			}
+		}
+	}
+
 	private void FlipDirection()
 	{
-		if (moveHorizontaly && !moveVertically) {
+		if (moveHorizontaly ) {
 			rigFront.SetActive(true);
 			rigBack.SetActive(false);
 			float DirectionX = Mathf.Sign(myRigidbody2D.velocity.x);
 
-			if (DirectionX == -1) {
+			if (DirectionX == 1) {
 				notch.localScale = new Vector2(1f, 1f);
 			}
-			if (DirectionX == 1) {
+			if (DirectionX == -1) {
 				notch.localScale = new Vector2(-1f, 1f);
 			}
 		}
